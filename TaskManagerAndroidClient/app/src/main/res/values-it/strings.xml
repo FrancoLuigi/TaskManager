@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="inputTitle">Inserisci Titolo</string>
+    <string name="inputText">Inserisci Testo </string>
+    <string name="inputDate">Inserisci Data</string>
+    <string name="registerUser">Registra User</string>
+    <string name="loginUser">Login User</string>
+    <string name="addTask">Aggiungi Task</string>
+    <string name="modifyTask">Modifica Task</string>
+    <string name="getAll">Dammi tutti i Task</string>
+    <string name="getFreeTasks">Dammi i Task liberi</string>
+    <string name="removeTask">Rimuovi Task</string>
+    <string name="getTasks">Dammi lo stato dei miei Task</string>
+    <string name="getTask">Dammi Task</string>
+    <string name="insertTitle">Inserisci il titolo del Task</string>
+    <string name="insertModify">Inserisci il Task da modificare</string>
+    <string name="assignTask">Assegna un Task</string>
+    <string name="selectTask"> Seleziona un Task per info</string>
+    <string name="completeTask">Completa un Task</string>
+    <string name="save">Salva credenziali</string>
+    <string name="text">Testo:</string>
+    <string name="title">Titolo:</string>
+    <string name="date">Data:</string>
+</resources>

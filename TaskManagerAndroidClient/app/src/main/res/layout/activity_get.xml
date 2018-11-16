@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_get_note"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context="com.gmail.francoluigi95.taskAndroid.GetActivity">
+
+
+    <TextView
+        android:id="@+id/noteOutput"
+        android:layout_width="306dp"
+        android:layout_height="164dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="139dp"
+        android:text="" />
+
+
+    <Button
+        android:id="@+id/buttongetactivity"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="40dp"
+        android:backgroundTint="@android:color/holo_blue_bright"
+        android:text="@string/getTask"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/notetext"
+        android:layout_width="wrap_content"
+        android:layout_height="43dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/insertTitle"
+        android:textAlignment="viewStart"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <AutoCompleteTextView
+        android:id="@+id/autocomplete_title"
+
+        android:layout_width="176dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="94dp"
+        android:textSize="24sp"
+        tools:layout_conversion_absoluteHeight="53dp"
+        tools:layout_conversion_absoluteWidth="21dp" />
+
+
+</RelativeLayout>
+

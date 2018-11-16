@@ -1,0 +1,36 @@
+<resources>
+    <string name="app_name">TaskManager</string>
+
+
+
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="inputTitle">Insert Title</string>
+    <string name="inputText">Insert Text </string>
+    <string name="inputDate">Insert Date</string>
+    <string name="registerUser">Register User</string>
+    <string name="loginUser">Login User</string>
+    <string name="addTask">Add Task</string>
+    <string name="modifyTask">Modify Task</string>
+    <string name="getAll">Get All Tasks</string>
+    <string name="getFreeTasks">Get Free Tasks</string>
+    <string name="removeTask">Remove Task</string>
+    <string name="getTasks">Get state of my tasks</string>
+    <string name="getTask">Get Task</string>
+    <string name="insertTitle">Insert Task title</string>
+    <string name="insertModify">Insert a task to modify</string>
+    <string name="assignTask">Assign Task</string>
+    <string name="selectTask"> Select a task for info</string>
+    <string name="completeTask">Complete Task</string>
+    <string name="save">Save credentials</string>
+    <string name="text">Text:</string>
+    <string name="title">Title:</string>
+    <string name="date">Date:</string>
+    <string name="tasks">Tasks:</string>
+
+
+
+
+
+
+</resources>
