@@ -105,7 +105,7 @@ public class TaskRegistryAPI {
 			try {
 				nr.load(fileName);
 			} catch (ClassNotFoundException | IOException e) {
-				System.err.println("Restore filed - starting a new registry " + e.getCause() + " " + e.getMessage());
+				System.err.println("Restore filed - starting a new registry ");
 				nr = new TaskRegistry();
 			}
 		}
