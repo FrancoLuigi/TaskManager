@@ -1,0 +1,24 @@
+language: java
+
+sudo: true
+
+before_install:
+- cd TaskManager
+- chmod +x gradlew
+- ./gradlew clean
+
+jdk:
+- oraclejdk8
+
+notifications:
+email:
+- francoluigi95@gmail.com
+- davidecocca@gmail.com
+- giovannipirozzi95@gmail.com
+on_success: never
+on_failure: always
+
+  
+sudo: required
+dist: trusty
+group: stable
