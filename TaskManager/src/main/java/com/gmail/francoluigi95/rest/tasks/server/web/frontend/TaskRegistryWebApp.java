@@ -61,7 +61,7 @@ public class TaskRegistryWebApp extends Application {
 		// nel file settings.json
 
 		try {
-			Scanner scanner = new Scanner(new File("settings.json"));
+			Scanner scanner = new Scanner(new File("src/main/resources/settings.json"));
 			settings = gson.fromJson(scanner.nextLine(), Settings.class);
 			scanner.close();
 			System.err.println("Loading settings from file");
@@ -77,12 +77,12 @@ public class TaskRegistryWebApp extends Application {
 		// oggetti e utenti ed effettuo il restore
 
 		TaskRegistryAPI nrapi = TaskRegistryAPI.instance();
-		nrapi.setStorageFiles(System.getProperty("user.dir") + "//" + settings.storage_base_dir + "//",
+		nrapi.setStorageFiles(System.getProperty("user.dir") +"//src//main//resources//"+ settings.storage_base_dir + "//",
 				settings.storage_base_file); // Imposto i file di storage
 		nrapi.restore();
 
 		UserRegistryAPI urapi = UserRegistryAPI.instance();
-		urapi.setStorageFiles(System.getProperty("user.dir") + "//" + settings.users_storage_base_dir + "//",
+		urapi.setStorageFiles(System.getProperty("user.dir") + "//src//main//resources//" + settings.users_storage_base_dir + "//",
 				settings.users_storage_base_file); // Imposto i file di storage
 	
 		urapi.restore();
