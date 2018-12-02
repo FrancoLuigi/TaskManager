@@ -15,10 +15,12 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.gmail.francoluigi95.taskAndroid.commons.InvalidKeyException;
 import com.google.gson.Gson;
 
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
+import org.restlet.security.User;
 
 import com.gmail.francoluigi95.taskAndroid.commons.ErrorCodes;
 
@@ -38,6 +40,7 @@ public class LogInActivity extends AppCompatActivity {
     private static final String TAG = "AlertDialogActivity";
     private DialogFragment mDialog;
     private SharedPreferences preferences;
+    private Gson gson;
 
 
     @Override
@@ -82,12 +85,16 @@ public class LogInActivity extends AppCompatActivity {
 
         mSignInButton = (Button) findViewById(R.id.register_bottom);
         mSignInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent myIntent = new Intent(LogInActivity.this, RegisterActivity.class);
-                startActivity(myIntent);
+            public void onClick(View v) {
 
-
+                if (mUsernameView.getText().toString().length() == 0 || mPasswordView.getText().toString().length() == 0) /* Verifico se username e password inseriti nei campi siano sufficientemente lunghi*/ {
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            Toast.makeText(getApplicationContext(), "Username e/o password non riempiti correttamente.", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                } else
+                    new LogInActivity.RegisterUserTask().execute("registration", mUsernameView.getText().toString(),  mPasswordView.getText().toString());
             }
         });
 
@@ -135,7 +142,7 @@ public class LogInActivity extends AppCompatActivity {
 
     public class LoginRestTask extends AsyncTask<String, Void, Integer> {
 
-        private Gson gson = new Gson();
+
 
 
         protected Integer doInBackground(String... params) {
@@ -211,6 +218,52 @@ public class LogInActivity extends AppCompatActivity {
             }
 
 
+        }
+    }
+
+    public class RegisterUserTask extends AsyncTask<String, Void, String> {
+
+        /* AsyncTask per l'esecuzione in background delle operazioni asincrone dedicate alla registrazione di un nuovo utente */
+
+        private String response;
+
+        @Override
+        protected String doInBackground(String... params) {
+            ClientResource cr;
+            cr = new ClientResource(baseURI + params[0]); // Creo la risorsa client basandomi su una URI costituita da baseURI + parametro passato dal metodo di gestione di un componente grafico (bottone) */
+            gson = new Gson();
+
+            String response = null;
+            User user = new User(params[1], params[2]); // Creo l'oggetto utente con i parametri ottenuti dal metodo per l'interazione con il componente grafico (e forniti dagli EditText)
+
+            try {
+                response = cr.post(gson.toJson(user, User.class)).getText(); // Effettuo la Request HTTP con metodo "POST" e inserisco in response la Response HTTP.
+                if (cr.getStatus().getCode() == ErrorCodes.INVALID_KEY_CODE) // Se mi viene restituito il codice di errore per una chiave invalida, lancio l'eccezione (ad esempio, Username duplicato)
+                    throw gson.fromJson(response, InvalidKeyException.class);
+            } catch (IOException e) {
+                String text = "Error: " + cr.getStatus().getCode() + " - " + cr.getStatus().getDescription() + " - " + cr.getStatus().getReasonPhrase();
+                Log.e(TAG, text);
+            } catch (InvalidKeyException e) {
+                response = null;
+
+                runOnUiThread(new Runnable() { // Poiché queste operazioni si stanno effettuando in un metodo dell'AsyncTask, per la visualizzazione di Toast è necessario eseguire un "Thread UI".
+                    public void run() {
+                        Toast.makeText(getApplicationContext(), "Username già utilizzato.", Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+            return response;
+        }
+
+        @Override
+        protected void onPostExecute(final String res) {
+            if (res != null)
+                Toast.makeText(getApplicationContext(), res, Toast.LENGTH_SHORT).show();
+            runOnUiThread(new Runnable() { // Poiché queste operazioni si stanno effettuando in un metodo dell'AsyncTask, per la visualizzazione di Toast è necessario eseguire un "Thread UI".
+                public void run() {
+
+                }
+            });
         }
     }
 
