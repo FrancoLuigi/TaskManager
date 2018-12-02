@@ -81,7 +81,7 @@ public class GetFreeActivity extends AppCompatActivity {
         list = (ListView) findViewById(R.id.listView);
         preferences = getSharedPreferences(prefName, MODE_PRIVATE);
 
-        if (preferences.contains("titles")) {
+        if (preferences.getStringSet("titles", titles).size()!=0) {
 
 
             titles = preferences.getStringSet("titles", titles);

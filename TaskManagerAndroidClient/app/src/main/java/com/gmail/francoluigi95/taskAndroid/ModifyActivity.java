@@ -105,7 +105,7 @@ public class ModifyActivity extends AppCompatActivity {
         autoComplete = (AutoCompleteTextView) findViewById(R.id.autocomplete_title);
 
 
-        if (preferences.contains("titles")) {
+        if (preferences.getStringSet("titles", titles).size()!=0) {
 
 
             titles = preferences.getStringSet("titles", titles);

@@ -71,7 +71,7 @@ public class GetAllActivity extends AppCompatActivity {
 
         noTask = (TextView) findViewById(R.id.textView);
 
-        if (preferences.contains("titles")) {
+        if (preferences.getStringSet("titles", titles).size()!=0) {
 
 
             titles = preferences.getStringSet("titles", titles);
@@ -149,8 +149,15 @@ public class GetAllActivity extends AppCompatActivity {
                 adapter = new ArrayAdapter<String>(getApplicationContext(), R.layout.list_item, tasks);
 
 
-                list.setAdapter(adapter);
-                list.setVisibility(View.VISIBLE);
+                if(tasks!=null) {
+                    list.setAdapter(adapter);
+                    list.setVisibility(View.VISIBLE);
+                }
+                else{
+                    noTask.setText("No Tasks");
+                }
+
+
             }
         }
 

@@ -73,51 +73,53 @@ public class RemoveActivity extends AppCompatActivity {
         preferences = getSharedPreferences(prefName, MODE_PRIVATE);
 
 
-        if (preferences.contains("titles")) {
+        if(preferences.contains("titles")) {
+            if (preferences.getStringSet("titles", titles).size() != 0) {
 
 
-            titles = preferences.getStringSet("titles", titles);
+                titles = preferences.getStringSet("titles", titles);
 
-            tasks = titles.toArray(new String[titles.size()]);
-
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, tasks);
-
-            // Set the adapter for the AutoCompleteTextView
-            autoComplete.setAdapter(adapter);
+                tasks = titles.toArray(new String[titles.size()]);
 
 
-            buttonRemove = (Button) findViewById(R.id.buttonRemove);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, tasks);
+
+                // Set the adapter for the AutoCompleteTextView
+                autoComplete.setAdapter(adapter);
 
 
-            // Create an ArrayAdapter containing country names
+                buttonRemove = (Button) findViewById(R.id.buttonRemove);
 
 
-            autoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                // Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
-                @Override
-                public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                        long arg3) {
+                // Create an ArrayAdapter containing country names
 
 
-                    title = arg0.getAdapter().getItem(arg2).toString();
+                autoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                }
-            });
-
-            buttonRemove.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                    // Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
+                    @Override
+                    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                            long arg3) {
 
 
-                    new RemoveActivity.RemoveRestTask().execute(title);
+                        title = arg0.getAdapter().getItem(arg2).toString();
 
-                }
-            });
+                    }
+                });
+
+                buttonRemove.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
 
-        } else
+                        new RemoveActivity.RemoveRestTask().execute(title);
+
+                    }
+                });
+
+
+            }
+        }else
             textOUT.setText("No Tasks");
     }
 

@@ -21,3 +21,8 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+TaskManager/src/main/resources/users/user.ser.2
+TaskManager/src/main/resources/users/user.ser.1
+TaskManager/src/main/resources/storage/db.ser.3
+TaskManager/src/main/resources/storage/db.ser.2
+TaskManager/src/main/resources/storage/db.ser.1

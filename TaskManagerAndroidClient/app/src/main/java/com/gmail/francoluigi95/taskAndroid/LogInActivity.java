@@ -90,7 +90,7 @@ public class LogInActivity extends AppCompatActivity {
                 if (mUsernameView.getText().toString().length() == 0 || mPasswordView.getText().toString().length() == 0) /* Verifico se username e password inseriti nei campi siano sufficientemente lunghi*/ {
                     runOnUiThread(new Runnable() {
                         public void run() {
-                            Toast.makeText(getApplicationContext(), "Username e/o password non riempiti correttamente.", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(), "Username e/o password non riempiti correttamente.", Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else
