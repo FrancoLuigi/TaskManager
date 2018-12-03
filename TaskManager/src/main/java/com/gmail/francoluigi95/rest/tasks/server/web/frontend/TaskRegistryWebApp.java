@@ -11,8 +11,8 @@ import org.restlet.data.Protocol;
 import org.restlet.resource.Directory;
 import org.restlet.routing.Router;
 
-import com.gmail.francoluigi95.rest.tasks.server.backend.wrapper.TaskRegistryAPI;
-import com.gmail.francoluigi95.rest.tasks.server.backend.wrapper.UserRegistryAPI;
+import com.gmail.francoluigi95.rest.tasks.database.DBSettings;
+import com.gmail.francoluigi95.rest.tasks.database.GestoreDB;
 import com.gmail.francoluigi95.rest.tasks.server.web.resources.TaskJSON;
 import com.gmail.francoluigi95.rest.tasks.server.web.resources.TaskRegJson;
 import com.gmail.francoluigi95.rest.tasks.server.web.resources.UserLogJSON;
@@ -21,15 +21,10 @@ import com.google.gson.Gson;
 
 public class TaskRegistryWebApp extends Application {
 
-
 	/* Creo la classe relative alle impostazioni del server */
 
 	private class Settings {
 		public int port; // Porta utilizzata dal server sulla quale fornisce i propri servizi
-		public String storage_base_dir; // Directory per lo storage delle note
-		public String storage_base_file; // File per lo storage delle note
-		public String users_storage_base_dir; // Directory per lo storage degli utenti
-		public String users_storage_base_file; // File per lo storage degli utenti
 		public String web_base_dir; // directory per le risorse web
 	}
 
@@ -73,19 +68,30 @@ public class TaskRegistryWebApp extends Application {
 		rootDirForWebStaticFiles = "file:///" + System.getProperty("user.dir") + "//" + settings.web_base_dir;
 		System.err.println("Web Directory: " + rootDirForWebStaticFiles);
 
-		// Richiamo le singole istanze (sono singleton) delle API per i registri di
-		// oggetti e utenti ed effettuo il restore
+		gestoreDB = GestoreDB.getInstance();
+		DBSettings.readSettingsFromFile();
+		gestoreDB.connectDB(DBSettings.host, DBSettings.port, DBSettings.user, DBSettings.pass);
 
-		TaskRegistryAPI nrapi = TaskRegistryAPI.instance();
-		nrapi.setStorageFiles(System.getProperty("user.dir") +"//src//main//resources//"+ settings.storage_base_dir + "//",
-				settings.storage_base_file); // Imposto i file di storage
-		nrapi.restore();
+		Scanner scanner = new Scanner(System.in);
+		while (!gestoreDB.isConnected()) {
+			System.out.println("\nInserisci i dati di configurazione per riprovare a connetterti.");
+			System.out.print("Inserisci l'host (in genere: localhost): ");
+			String host = scanner.nextLine();
+			System.out.print("Inserisci la porta (in genere: 3306): ");
+			String port = scanner.nextLine();
+			System.out.print("Inserisci l'username:");
+			String user = scanner.nextLine();
+			System.out.print("Inserisci la password:");
+			String pass = scanner.nextLine();
+			DBSettings.updateSettingsInFile(host, port, user, pass);
+			gestoreDB.connectDB(DBSettings.host, DBSettings.port, DBSettings.user, DBSettings.pass);
+		}
 
-		UserRegistryAPI urapi = UserRegistryAPI.instance();
-		urapi.setStorageFiles(System.getProperty("user.dir") + "//src//main//resources//" + settings.users_storage_base_dir + "//",
-				settings.users_storage_base_file); // Imposto i file di storage
-	
-		urapi.restore();
+		scanner.close();
+
+		gestoreDB.createDatabase();
+		gestoreDB.createTableUsers();
+		gestoreDB.createTableTasks();
 
 		try {
 			Component component = new Component(); // Creo la componente Restlet
@@ -99,4 +105,6 @@ public class TaskRegistryWebApp extends Application {
 			e.printStackTrace();
 		}
 	}
+
+	private static GestoreDB gestoreDB;
 }

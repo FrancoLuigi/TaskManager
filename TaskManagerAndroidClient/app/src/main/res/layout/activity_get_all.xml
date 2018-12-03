@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_getall_note"
 
@@ -13,39 +14,41 @@
         android:id="@+id/listView"
         android:layout_width="wrap_content"
         android:layout_height="447dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
         android:layout_marginStart="11dp"
         android:layout_marginTop="37dp"
 
         android:entries="@android:color/black"
         android:longClickable="true"
         android:scrollbars="vertical"
-        android:visibility="visible" />
+        android:visibility="visible"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
     <TextView
         android:id="@+id/textView"
         android:layout_width="196dp"
         android:layout_height="54dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
         android:layout_marginTop="143dp"
         android:textColor="@android:color/holo_red_dark"
-        android:textSize="24sp" />
+        android:textSize="24sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
     <TextView
         android:id="@+id/taskOutput"
         android:layout_width="69dp"
         android:layout_height="45dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
 
         android:layout_marginTop="14dp"
         android:text="@string/tasks"
         android:textColor="#2a00ff"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 
-</RelativeLayout>
+</android.support.constraint.ConstraintLayout>

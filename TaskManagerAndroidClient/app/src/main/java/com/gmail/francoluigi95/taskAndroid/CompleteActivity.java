@@ -74,6 +74,7 @@ public class CompleteActivity extends AppCompatActivity {
 
 
                     title = arg0.getAdapter().getItem(arg2).toString();
+
                     new CompleteActivity.GetRestTask().execute(title);
                 }
             });

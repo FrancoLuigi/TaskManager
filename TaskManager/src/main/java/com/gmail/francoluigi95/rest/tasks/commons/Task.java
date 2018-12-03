@@ -21,7 +21,7 @@ public class Task implements Serializable {
 		return user;
 	}
 
-	public void setString(String user) {
+	public void setUser(String user) {
 		this.user = user;
 	}
 

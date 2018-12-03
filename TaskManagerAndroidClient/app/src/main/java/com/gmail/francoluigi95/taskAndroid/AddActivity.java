@@ -219,7 +219,13 @@ public class AddActivity extends AppCompatActivity {
 
         if (textTitle.getText().toString().equalsIgnoreCase("") || text.getText().toString().equalsIgnoreCase("")) { // Nel campo input deve essere inserita la key
             textOUT.setText("Insert Title, Text and Date");
-        } else {
+        }
+        else if(textTitle.getText().length()<3){
+
+            textOUT.setText("Minimum length of the task's title is 3 characters");
+        }
+        else {
+
             new AddActivity.PostRestTask().execute(textTitle.getText().toString(), text.getText().toString(), data.getText().toString());
         }
 
