@@ -51,44 +51,46 @@ public class AssignActivity extends AppCompatActivity {
         autoComplete = (AutoCompleteTextView) findViewById(R.id.autocomplete_title);
         textOUT = (TextView) findViewById(R.id.noteoutput);
 
-        if (preferences.getStringSet("titles", titles).size()!=0) {
+        if(preferences.contains("titles")) {
+            if (preferences.getStringSet("titles", titles).size() != 0) {
 
 
-            titles = preferences.getStringSet("titles", titles);
+                titles = preferences.getStringSet("titles", titles);
 
-            tasks = titles.toArray(new String[titles.size()]);
-
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, tasks);
-
-            autoComplete.setAdapter(adapter);
+                tasks = titles.toArray(new String[titles.size()]);
 
 
-            buttonComplete = (Button) findViewById(R.id.buttonComplete);
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, tasks);
+
+                autoComplete.setAdapter(adapter);
 
 
-            autoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-
-                // Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
-                @Override
-                public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                        long arg3) {
+                buttonComplete = (Button) findViewById(R.id.buttonComplete);
 
 
-                    title = arg0.getAdapter().getItem(arg2).toString();
-                    new AssignActivity.GetRestTask().execute(title);
-                }
-            });
+                autoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-            buttonComplete.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
+                    // Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
+                    @Override
+                    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                            long arg3) {
 
-                    new AssignActivity.AssignRestTask1().execute(title);
-                }
-            });
 
-        } else
+                        title = arg0.getAdapter().getItem(arg2).toString();
+                        new AssignActivity.GetRestTask().execute(title);
+                    }
+                });
+
+                buttonComplete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        new AssignActivity.AssignRestTask1().execute(title);
+                    }
+                });
+
+            }
+        }else
             textOUT.setText("No Tasks");
     }
 

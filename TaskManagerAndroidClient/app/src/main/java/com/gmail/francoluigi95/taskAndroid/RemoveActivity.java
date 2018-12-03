@@ -124,10 +124,7 @@ public class RemoveActivity extends AppCompatActivity {
     }
 
 
- /*   public void remove(String s){
-        new RemoveRestTask().execute(s);
-    }
-*/
+
 
     public class RemoveRestTask extends AsyncTask<String, Void, String> {
 

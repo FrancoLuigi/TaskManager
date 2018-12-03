@@ -112,6 +112,7 @@ public class LogInActivity extends AppCompatActivity {
         // Finish the ShutDown process
         finishShutdown();
 
+
     }
 
     private void finishShutdown() {
@@ -121,7 +122,7 @@ public class LogInActivity extends AppCompatActivity {
                 try {
                     // Pretend to do something before
                     // shutting down
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
 
                 } catch (InterruptedException e) {
                     Log.i(TAG, e.toString());
@@ -134,9 +135,12 @@ public class LogInActivity extends AppCompatActivity {
                     } else
                         new LoginRestTask().execute(mUsernameView.getText().toString(), mPasswordView.getText().toString());
 
+
                 }
             }
         }).start();
+
+
     }
 
 
@@ -203,22 +207,27 @@ public class LogInActivity extends AppCompatActivity {
                 startActivity(myIntent);
 
 
+
+
             } else if (c == 1) {
                 mResultOp.setText("Unregistered User");
 
                 Toast.makeText(getApplicationContext(), "Unregistered User", Toast.LENGTH_SHORT).show();
-                Intent myIntent = new Intent(LogInActivity.this, LogInActivity.class);
-                startActivity(myIntent);
+
 
             } else if (c == 2) {
                 mResultOp.setText("Wrong credentials");
                 Toast.makeText(getApplicationContext(), "Unregistered User", Toast.LENGTH_SHORT).show();
-                Intent myIntent = new Intent(LogInActivity.this, LogInActivity.class);
-                startActivity(myIntent);
+
             }
 
+            mDialog.dismiss();
 
         }
+
+
+
+
     }
 
     public class RegisterUserTask extends AsyncTask<String, Void, String> {
@@ -264,6 +273,8 @@ public class LogInActivity extends AppCompatActivity {
 
                 }
             });
+
+
         }
     }
 

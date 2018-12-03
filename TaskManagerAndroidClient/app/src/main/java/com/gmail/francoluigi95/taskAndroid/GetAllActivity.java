@@ -71,21 +71,23 @@ public class GetAllActivity extends AppCompatActivity {
 
         noTask = (TextView) findViewById(R.id.textView);
 
-        if (preferences.getStringSet("titles", titles).size()!=0) {
+        if(preferences.contains("titles")) {
+            if (preferences.getStringSet("titles", titles).size() != 0) {
 
 
-            titles = preferences.getStringSet("titles", titles);
+                titles = preferences.getStringSet("titles", titles);
 
-            tasks1 = titles.toArray(new String[titles.size()]);
-
-
-            gson = new Gson();
+                tasks1 = titles.toArray(new String[titles.size()]);
 
 
-            new GetAllActivity.GetAllRestTask().execute();
+                gson = new Gson();
 
 
-        } else
+                new GetAllActivity.GetAllRestTask().execute();
+
+
+            }
+        }else
             noTask.setText("No Tasks");
     }
 

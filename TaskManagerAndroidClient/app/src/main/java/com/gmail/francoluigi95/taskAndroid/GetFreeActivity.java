@@ -81,19 +81,21 @@ public class GetFreeActivity extends AppCompatActivity {
         list = (ListView) findViewById(R.id.listView);
         preferences = getSharedPreferences(prefName, MODE_PRIVATE);
 
-        if (preferences.getStringSet("titles", titles).size()!=0) {
+        if(preferences.contains("titles")) {
+            if (preferences.getStringSet("titles", titles).size() != 0) {
 
 
-            titles = preferences.getStringSet("titles", titles);
+                titles = preferences.getStringSet("titles", titles);
 
-            tasks1 = titles.toArray(new String[titles.size()]);
-
-
-            gson = new Gson();
+                tasks1 = titles.toArray(new String[titles.size()]);
 
 
-            new GetFreeActivity.GetFreeRestTask().execute();
-        } else
+                gson = new Gson();
+
+
+                new GetFreeActivity.GetFreeRestTask().execute();
+            }
+        }else
             textOUT.setText("No Tasks");
 
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {

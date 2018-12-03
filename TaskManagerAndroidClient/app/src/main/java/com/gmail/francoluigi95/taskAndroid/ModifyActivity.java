@@ -105,33 +105,35 @@ public class ModifyActivity extends AppCompatActivity {
         autoComplete = (AutoCompleteTextView) findViewById(R.id.autocomplete_title);
 
 
-        if (preferences.getStringSet("titles", titles).size()!=0) {
+        if(preferences.contains("titles")) {
+            if (preferences.getStringSet("titles", titles).size() != 0) {
 
 
-            titles = preferences.getStringSet("titles", titles);
+                titles = preferences.getStringSet("titles", titles);
 
-            tasks = titles.toArray(new String[titles.size()]);
-
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, tasks);
-
-            // Set the adapter for the AutoCompleteTextView
-            autoComplete.setAdapter(adapter);
+                tasks = titles.toArray(new String[titles.size()]);
 
 
-            autoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, tasks);
 
-                // Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
-                @Override
-                public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
-                                        long arg3) {
+                // Set the adapter for the AutoCompleteTextView
+                autoComplete.setAdapter(adapter);
 
 
-                    title = arg0.getAdapter().getItem(arg2).toString();
+                autoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
-                }
-            });
-        } else
+                    // Display a Toast Message when the user clicks on an item in the AutoCompleteTextView
+                    @Override
+                    public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
+                                            long arg3) {
+
+
+                        title = arg0.getAdapter().getItem(arg2).toString();
+
+                    }
+                });
+            }
+        }else
             textOUT.setText("No Tasks");
 
 
