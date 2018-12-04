@@ -117,7 +117,7 @@ public class AddActivity extends AppCompatActivity {
             };
 
 
-    public class PostRestTask extends AsyncTask<String, Void, String> {
+    public class LoginRestTask extends AsyncTask<String, Void, String> {
 
         private Task t;
 
@@ -226,7 +226,7 @@ public class AddActivity extends AppCompatActivity {
         }
         else {
 
-            new AddActivity.PostRestTask().execute(textTitle.getText().toString(), text.getText().toString(), data.getText().toString());
+            new AddActivity.LoginRestTask().execute(textTitle.getText().toString(), text.getText().toString(), data.getText().toString());
         }
 
     }

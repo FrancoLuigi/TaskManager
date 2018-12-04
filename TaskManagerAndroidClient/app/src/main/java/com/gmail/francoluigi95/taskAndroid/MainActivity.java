@@ -230,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
 
                     Intent Intent = new Intent(MainActivity.this, LogInActivity.class);
                     startActivity(Intent);
+                    mDialog.dismiss();
                 }
             }
         }).start();
