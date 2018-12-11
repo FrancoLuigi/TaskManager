@@ -22,14 +22,15 @@ jdk:
 - oraclejdk8
 
 notifications:
-
-webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
 email:
 - francoluigi95@gmail.com
 - davidecocca@gmail.com
 - giovannipirozzi95@gmail.com
 on_success: never
 on_failure: always
+
+notifications:
+  webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
 
 
 sudo: required

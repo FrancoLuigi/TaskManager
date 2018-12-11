@@ -104,7 +104,7 @@ public class GestoreDB {
 			String sql = "insert ignore into users " + " (username, password)" + " values ('" + u.getIdentifier()
 					+ "', '" + String.valueOf(u.getSecret()) + "')";
 
-			System.out.println(String.valueOf(u.getSecret()));
+			
 			myStmt.executeUpdate(sql1);
 			myStmt.executeUpdate(sql);
 
