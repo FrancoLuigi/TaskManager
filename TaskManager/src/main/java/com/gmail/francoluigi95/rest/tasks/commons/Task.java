@@ -61,7 +61,7 @@ public class Task implements Serializable {
 
 		SimpleDateFormat sd = new SimpleDateFormat("dd/MM/yyy");
 
-		return "Titolo: " + title + ", " + "testo: " + text + ", " + "data: " + sd.format(date) + ", " + "stato: "
+		return "Title: " + title + ", " + "text: " + text + ", " + "date: " + sd.format(date) + ", " + "state: "
 				+ state + ", " + "user: " + user + ";";
 		// return title+" ,"+text+" ,"+sd.format(date)+" ,"+state+" ,"+user+" -";
 	}

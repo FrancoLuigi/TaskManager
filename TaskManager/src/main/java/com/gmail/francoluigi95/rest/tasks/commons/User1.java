@@ -27,9 +27,7 @@ public class User1 implements Serializable {
 		return tasks;
 	}
 
-	public void setTasks(HashMap<String,Task> tasks) {
-		this.tasks = tasks;
-	}
+	
 
 	public void addTask(Task t) {
 		tasks.put(t.getTitle(),t);
@@ -41,7 +39,7 @@ public class User1 implements Serializable {
 	}
 	public String toString() {
 
-		return "User: " + identifier + ", " + secret.toString() + " ";
+		return "User: " + identifier + ", " + String.valueOf(secret) + " ";
 	}
 
 	private String identifier;
