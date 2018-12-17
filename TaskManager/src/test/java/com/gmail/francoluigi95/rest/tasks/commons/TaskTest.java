@@ -15,7 +15,7 @@ public class TaskTest implements Serializable {
 
 	@Before
 	public void setUp() throws Exception {
-		GregorianCalendar gregorianCalendar1 = new GregorianCalendar(2017, GregorianCalendar.SEPTEMBER, 27);
+		GregorianCalendar gregorianCalendar1 = new GregorianCalendar(2018, GregorianCalendar.DECEMBER, 17);
 
 		Date data = gregorianCalendar1.getTime();
 		t = new Task("TitleTest", "TextTest", data, "StateTest");
