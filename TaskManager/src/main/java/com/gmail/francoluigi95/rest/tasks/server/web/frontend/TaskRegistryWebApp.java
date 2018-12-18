@@ -36,7 +36,7 @@ public class TaskRegistryWebApp extends Application {
 		Directory directory = new Directory(getContext(), rootDirForWebStaticFiles);
 		directory.setListingAllowed(true);
 		directory.setDeeplyAccessible(true);
-
+		// router gp
 		router.attach("/TaskRegApplication/tasks", TaskRegJson.class);
 		router.attach("/TaskRegApplication/freeTasks", TaskRegJson.class);
 		router.attach("/TaskRegApplication/allTasks/{username}", UserRegJSON.class);
