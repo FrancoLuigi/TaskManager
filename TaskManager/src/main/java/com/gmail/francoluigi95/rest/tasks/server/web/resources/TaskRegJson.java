@@ -47,6 +47,7 @@ public class TaskRegJson extends ServerResource {
 			return gson.toJson("Re-enter the title", String.class);
 		}
 
+		
 		g.insertTask(t);
 
 		return gson.toJson("Task added: " + t.getTitle(), String.class);
