@@ -239,30 +239,18 @@ public class TaskRegJsonTest {
 						fail();
 					}
 					
-					// Creo il nuovo task
-					Task task3 = new Task("task3", "text3", d, "noResponsabile");
-
-					// Creo la stringa Json
-					String task3String = gson.toJson(task3, Task.class);
-
-					try {
-						// Aggiungo il task
-						String response = gson.fromJson(taskRegJson.addTask(task3String), String.class);
-
-						// Verifico se la risposta ricevuta è uguale a quella attesa
-						assertEquals("Task added: " + task3.getTitle(), response);
-
-					} catch (JsonSyntaxException | ParseException | InvalidUsernameException e) {
-						fail();
-					}
-					
 					// Ottengo tutti i task senza responsabile
+					ArrayList<Task> tasks = new ArrayList<Task>();
 					try {
 						// Get tasks
-						ArrayList<?> tasks = gson.fromJson(taskRegJson.getTasks(), ArrayList.class);
+						gson.fromJson(taskRegJson.getTasks(), ArrayList.class);
 
-						// Verifico che ci sono almeno 3 task senza responsabile
-						assertTrue(tasks.size() >= 3);
+						// Verifico se è presente il task1
+						for (Task i : tasks) {
+							if (i.getTitle().equals(task1.getTitle())) {
+								assertTrue(true);
+							}
+						}
 
 					} catch (JsonSyntaxException | ParseException | InvalidKeyException e) {
 						fail();
