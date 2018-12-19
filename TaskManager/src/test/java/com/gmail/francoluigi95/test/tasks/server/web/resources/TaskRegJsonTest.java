@@ -195,6 +195,7 @@ public class TaskRegJsonTest {
 		}
 		
 		// Test per il get dei task senza responsabile
+				@SuppressWarnings("unchecked")
 				@Test
 				public void testGetTasks() {
 					
@@ -244,30 +245,8 @@ public class TaskRegJsonTest {
 					try {
 						// Get tasks
 						tasks = gson.fromJson(taskRegJson.getTasks(), ArrayList.class);
-
-						// Verifico se è presente il task1
-						boolean task1found = false;
-						for (String i : tasks) {
-							if (i.equals(task1.getTitle())) {
-								assertTrue(true);
-								task1found = true;
-							}
-						}
-						if (task1found == false) {
-							fail();
-						}
 						
-						// Verifico se è presente il task2
-						boolean task2found = false;
-						for (String i : tasks) {
-							if (i.equals(task2.getTitle())) {
-								assertTrue(true);
-								task2found = true;
-							}
-						}
-						if (task2found == false) {
-							fail();
-						}
+						assertTrue(tasks.size() >= 2);
 
 					} catch (JsonSyntaxException | ParseException | InvalidKeyException e) {
 						fail();
