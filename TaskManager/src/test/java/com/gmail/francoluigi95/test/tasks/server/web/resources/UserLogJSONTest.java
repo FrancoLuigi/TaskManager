@@ -82,7 +82,7 @@ public class UserLogJSONTest {
 		// Controllo le credenziali
 		boolean response = gson.fromJson(userLogJSON.checkUser(uS), Boolean.class);
 		// Verifico se la risposta ricevuta è uguale a quella attesa
-		assertTrue(response);
+		assertEquals(response, true);
 	}
 	
 	// Test per il controllo delle credenziali di un utente (credenziali non corrette)
@@ -113,7 +113,7 @@ public class UserLogJSONTest {
 			// Controllo le credenziali
 			boolean response = gson.fromJson(userLogJSON.checkUser(uS), Boolean.class);
 			// Verifico se la risposta ricevuta è uguale a quella attesa
-			assertFalse(response);
+			assertEquals(response, false);
 		}
 
 	GestoreDB g = GestoreDB.getInstance();
