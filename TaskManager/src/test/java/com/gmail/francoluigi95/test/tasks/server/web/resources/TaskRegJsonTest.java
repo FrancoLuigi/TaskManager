@@ -240,16 +240,33 @@ public class TaskRegJsonTest {
 					}
 					
 					// Ottengo tutti i task senza responsabile
-					ArrayList<Task> tasks = new ArrayList<Task>();
+					ArrayList<String> tasks;
 					try {
 						// Get tasks
-						gson.fromJson(taskRegJson.getTasks(), ArrayList.class);
+						tasks = gson.fromJson(taskRegJson.getTasks(), ArrayList.class);
 
 						// Verifico se è presente il task1
-						for (Task i : tasks) {
-							if (i.getTitle().equals(task1.getTitle())) {
+						boolean task1found = false;
+						for (String i : tasks) {
+							if (i.equals(task1.getTitle())) {
 								assertTrue(true);
+								task1found = true;
 							}
+						}
+						if (task1found == false) {
+							fail();
+						}
+						
+						// Verifico se è presente il task2
+						boolean task2found = false;
+						for (String i : tasks) {
+							if (i.equals(task2.getTitle())) {
+								assertTrue(true);
+								task2found = true;
+							}
+						}
+						if (task2found == false) {
+							fail();
 						}
 
 					} catch (JsonSyntaxException | ParseException | InvalidKeyException e) {
