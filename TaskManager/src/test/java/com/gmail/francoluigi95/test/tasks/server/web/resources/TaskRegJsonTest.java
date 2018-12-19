@@ -246,8 +246,9 @@ public class TaskRegJsonTest {
 						// Get tasks
 						tasks = gson.fromJson(taskRegJson.getTasks(), ArrayList.class);
 						
-						assertTrue(tasks.size() >= 2);
+						assertEquals(tasks.size(),2);
 
+						System.out.println(tasks.size());
 					} catch (JsonSyntaxException | ParseException | InvalidKeyException e) {
 						fail();
 					}
