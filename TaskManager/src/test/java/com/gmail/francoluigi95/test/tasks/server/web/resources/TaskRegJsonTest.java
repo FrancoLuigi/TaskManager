@@ -257,10 +257,9 @@ public class TaskRegJsonTest {
 					}
 					
 					// Ottengo tutti i task senza responsabile
-					ArrayList<Task> tasks = new ArrayList<Task>();
 					try {
 						// Get tasks
-						tasks = gson.fromJson(taskRegJson.getTasks(), ArrayList.class);
+						ArrayList<?> tasks = gson.fromJson(taskRegJson.getTasks(), ArrayList.class);
 
 						// Verifico che ci sono almeno 3 task senza responsabile
 						assertTrue(tasks.size() >= 3);
