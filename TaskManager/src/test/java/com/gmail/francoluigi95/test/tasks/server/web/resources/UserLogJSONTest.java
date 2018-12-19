@@ -79,10 +79,8 @@ public class UserLogJSONTest {
 		// Creo la stringa Json
 		String uS = gson.toJson(u.getIdentifier() + ";" + String.valueOf(u.getSecret()), String.class);
 		
-		// Controllo le credenziali
-		boolean response = gson.fromJson(userLogJSON.checkUser(uS), Boolean.class);
-		// Verifico se la risposta ricevuta è uguale a quella attesa
-		assertEquals(response, true);
+		// Controllo le credenziali e verifico se la risposta ricevuta è uguale a quella attesa
+		assertTrue(gson.fromJson(userLogJSON.checkUser(uS), Boolean.class));
 	}
 	
 	// Test per il controllo delle credenziali di un utente (credenziali non corrette)
@@ -110,10 +108,8 @@ public class UserLogJSONTest {
 			// Creo la stringa Json
 			String uS = gson.toJson(u.getIdentifier() + ";" + "notAValidPassword", String.class);
 			
-			// Controllo le credenziali
-			boolean response = gson.fromJson(userLogJSON.checkUser(uS), Boolean.class);
-			// Verifico se la risposta ricevuta è uguale a quella attesa
-			assertEquals(response, false);
+			// Controllo le credenziali e verifico se la risposta ricevuta è uguale a quella attesa
+			assertFalse(gson.fromJson(userLogJSON.checkUser(uS), Boolean.class));
 		}
 
 	GestoreDB g = GestoreDB.getInstance();
