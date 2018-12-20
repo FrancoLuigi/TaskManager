@@ -247,7 +247,7 @@ public class TaskRegJsonTest {
 						tasks = gson.fromJson(taskRegJson.getTasks(), ArrayList.class);
 						
 						if(tasks.contains(task1String) && tasks.contains(task2String))
-							assertTrue("Get failed",true);
+							assertTrue("Tasks non found",true);
 
 						
 					} catch (JsonSyntaxException | ParseException | InvalidKeyException e) {
