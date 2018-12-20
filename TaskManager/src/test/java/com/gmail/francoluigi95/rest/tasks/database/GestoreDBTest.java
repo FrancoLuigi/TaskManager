@@ -23,7 +23,6 @@ import com.google.gson.Gson;
 
 public class GestoreDBTest {
 
-	//prova
 	static Gson gson = new Gson();
 
 	class Settings {
