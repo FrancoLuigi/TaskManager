@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 
 public class GestoreDBTest {
 
+	//prova
 	static Gson gson = new Gson();
 
 	class Settings {
@@ -87,7 +88,7 @@ public class GestoreDBTest {
 		// leggo il task dal database
 		Task t = g.readTask(task1.getTitle());
 
-		// verifico se il task letto dal db è uguale a quello inserito in precedenza
+		// verifico se il task letto dal db ï¿½ uguale a quello inserito in precedenza
 		assertEquals(task1.getTitle(), t.getTitle());
 		assertEquals(task1.getState(), t.getState());
 		assertEquals(task1.getText(), t.getText());
@@ -141,7 +142,7 @@ public class GestoreDBTest {
 		// leggo il task dal database
 		Task t = g.readTask(task1.getTitle());
 
-		// verifico se il task letto dal db è uguale a quello inserito in precedenza
+		// verifico se il task letto dal db ï¿½ uguale a quello inserito in precedenza
 		assertEquals(task1.getState(), t.getState());
 		assertEquals(task1.getText(), t.getText());
 
