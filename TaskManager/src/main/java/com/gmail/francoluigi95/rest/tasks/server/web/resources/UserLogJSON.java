@@ -22,8 +22,9 @@ public class UserLogJSON extends ServerResource {
 		if (password.equals(passwordDB)) {
 			return gson.toJson(true, Boolean.class);
 		}
-
+		else {
 		return gson.toJson(false, Boolean.class);
+		}
 
 	}
 
