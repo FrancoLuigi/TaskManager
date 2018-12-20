@@ -1,6 +1,8 @@
 package com.gmail.francoluigi95.rest.tasks.database;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -19,7 +21,6 @@ import org.junit.Test;
 import com.gmail.francoluigi95.rest.tasks.commons.Task;
 import com.gmail.francoluigi95.rest.tasks.commons.User1;
 import com.google.gson.Gson;
-
 
 public class GestoreDBTest {
 
@@ -79,7 +80,7 @@ public class GestoreDBTest {
 		Date d = data.getTime();
 
 		// Creo il nuovo task
-		Task task1 = new Task("task", "text", d, "new"); 
+		Task task1 = new Task("task", "text", d, "new");
 
 		// aggiungo il task al database
 		g.insertTask(task1);
@@ -104,7 +105,7 @@ public class GestoreDBTest {
 	public void testInsertUser() {
 
 		// creo un nuovo utente
-		char[] pw = {'1', '2', '3', '4'};
+		char[] pw = { '1', '2', '3', '4' };
 		User1 u = new User1("davide", pw);
 		// aggiungo l'utente al database
 		g.insertUser(u);
@@ -160,7 +161,7 @@ public class GestoreDBTest {
 		Task task2 = new Task("task2", "text2", d, "new");
 
 		// aggiungo il task al database
-		g.insertTask(task2);	
+		g.insertTask(task2);
 
 		// rimuovo il task nel db
 		boolean result = g.deleteTask(task2.getTitle());
@@ -177,7 +178,7 @@ public class GestoreDBTest {
 		Date d = data.getTime();
 
 		// Creo i nuovi task
-		Task task3 = new Task("task3", "text3", d, "NoResponsabile"); 
+		Task task3 = new Task("task3", "text3", d, "NoResponsabile");
 		Task task4 = new Task("task4", "text4", d, "NoResponsabile");
 
 		// aggiungo i task al database
@@ -186,7 +187,7 @@ public class GestoreDBTest {
 
 		// recupero i task senza responsabile aggiunti in precedenza
 		ArrayList<String> tasks = g.readFreeTasksTitle();
-		if(tasks.contains(task3.getTitle()) && tasks.contains(task4.getTitle())){
+		if (tasks.contains(task3.getTitle()) && tasks.contains(task4.getTitle())) {
 			assertTrue("tasks not found", true);
 		}
 
@@ -197,7 +198,7 @@ public class GestoreDBTest {
 	public void testReadAllTasksOfUser() {
 
 		// creo un nuovo utente
-		char[] pw = {'5', '6', '7', '8'};
+		char[] pw = { '5', '6', '7', '8' };
 		User1 u = new User1("cocca", pw);
 		// aggiungo l'utente al database
 		g.insertUser(u);
@@ -208,7 +209,7 @@ public class GestoreDBTest {
 		Date d = data.getTime();
 
 		// Creo i nuovi task
-		Task task5 = new Task("task5", "text5", d, "NoResponsabile"); 
+		Task task5 = new Task("task5", "text5", d, "NoResponsabile");
 		Task task6 = new Task("task6", "text6", d, "NoResponsabile");
 
 		// assegno i task all'utente
@@ -219,13 +220,11 @@ public class GestoreDBTest {
 		g.insertTask(task5);
 		g.insertTask(task6);
 
-
 		// ottengo tutti i task dell'utente
 		ArrayList<String> tasks = g.readAllTasksOfUser(u.getIdentifier());
-		if(tasks.contains(task5.toString()) && tasks.contains(task6.toString())) {
+		if (tasks.contains(task5.toString()) && tasks.contains(task6.toString())) {
 			assertTrue("tasks not found", true);
-		}
-		else {
+		} else {
 			fail();
 		}
 

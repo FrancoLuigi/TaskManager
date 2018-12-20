@@ -1,6 +1,7 @@
 package com.gmail.francoluigi95.test.tasks.server.web.resources;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -17,10 +18,10 @@ import com.gmail.francoluigi95.rest.tasks.server.web.resources.UserRegJSON;
 import com.google.gson.Gson;
 
 public class UserRegJSONTest {
-	
+
 	static UserRegJSON userRegJSON = new UserRegJSON();
 	static Gson gson = new Gson();
-	
+
 	class Settings {
 
 		public String storage_base_dir; // Directory per lo storage dei task
@@ -46,6 +47,7 @@ public class UserRegJSONTest {
 		GestoreDB g = GestoreDB.getInstance();
 		DBSettings.readSettingsFromFile();
 		g.connectDB(DBSettings.host, DBSettings.port, DBSettings.user, DBSettings.pass);
+		g.dropDatabase();
 		g.createDatabase();
 		g.createTableUsers();
 		g.createTableTasks();
@@ -55,14 +57,14 @@ public class UserRegJSONTest {
 	// Test per l'aggiunta di un utente
 	@Test
 	public void testAdd() {
-		
+
 		// Creo un nuovo utente
-		char[] pw = {'1', '2', '3', '4'};
+		char[] pw = { '1', '2', '3', '4' };
 		User1 u = new User1("davide", pw);
-		
+
 		// Creo la stringa Json
 		String uString = gson.toJson(u, User1.class);
-		
+
 		try {
 			// Aggiungo l'utente
 			String response = gson.fromJson(userRegJSON.addUser(uString), String.class);
@@ -72,6 +74,6 @@ public class UserRegJSONTest {
 			fail();
 		}
 	}
-	
+
 	GestoreDB g = GestoreDB.getInstance();
 }

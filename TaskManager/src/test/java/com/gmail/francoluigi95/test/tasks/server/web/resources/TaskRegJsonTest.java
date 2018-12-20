@@ -1,7 +1,6 @@
 package com.gmail.francoluigi95.test.tasks.server.web.resources;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
 import java.io.File;
@@ -54,6 +53,7 @@ public class TaskRegJsonTest {
 		GestoreDB g = GestoreDB.getInstance();
 		DBSettings.readSettingsFromFile();
 		g.connectDB(DBSettings.host, DBSettings.port, DBSettings.user, DBSettings.pass);
+		g.dropDatabase();
 		g.createDatabase();
 		g.createTableUsers();
 		g.createTableTasks();
@@ -141,120 +141,118 @@ public class TaskRegJsonTest {
 		}
 
 	}
-	
+
 	// Test per l'update di un task
-		@Test
-		public void testUpdate() {
-			
-			// Aggiungo un nuovo task
-			
-			// Ottengo la data di oggi
-			Calendar data = Calendar.getInstance();
-			data.add(Calendar.DATE, 0);
-			Date d = data.getTime();
+	@Test
+	public void testUpdate() {
 
-			// Creo il nuovo task
-			Task task1 = new Task("task", "text", d, "new");
+		// Aggiungo un nuovo task
 
-			// Creo la stringa Json
-			String task1String = gson.toJson(task1, Task.class);
+		// Ottengo la data di oggi
+		Calendar data = Calendar.getInstance();
+		data.add(Calendar.DATE, 0);
+		Date d = data.getTime();
 
-			try {
-				// Aggiungo il task
-				String response = gson.fromJson(taskRegJson.addTask(task1String), String.class);
+		// Creo il nuovo task
+		Task task1 = new Task("task", "text", d, "new");
 
-				// Verifico se la risposta ricevuta è uguale a quella attesa
-				assertEquals("Task added: " + task1.getTitle(), response);
+		// Creo la stringa Json
+		String task1String = gson.toJson(task1, Task.class);
 
-			} catch (JsonSyntaxException | ParseException | InvalidUsernameException e) {
-				fail();
-			}
-			
-			// Modifico il task aggiunto in precedenza
-			task1.setText("new_text");
-			task1.setState("assigned");
+		try {
+			// Aggiungo il task
+			String response = gson.fromJson(taskRegJson.addTask(task1String), String.class);
 
-			data.add(Calendar.DATE, 1);
-			d = data.getTime();
-			task1.setDate(d);
-			
-			// Creo la stringa Json
-			task1String = gson.toJson(task1, Task.class);
-			
-			try {
-				// Aggiorno il task
-				String response = gson.fromJson(taskRegJson.updateTask(task1String), String.class);
+			// Verifico se la risposta ricevuta è uguale a quella attesa
+			assertEquals("Task added: " + task1.getTitle(), response);
 
-				// Verifico se la risposta ricevuta è uguale a quella attesa
-				assertEquals("Task modified: " + task1.getTitle(), response);
-
-			} catch (JsonSyntaxException | ParseException | InvalidUsernameException | FileNotFoundException e) {
-				fail();
-			}
-
+		} catch (JsonSyntaxException | ParseException | InvalidUsernameException e) {
+			fail();
 		}
-		
-		// Test per il get dei task senza responsabile
-				@SuppressWarnings("unchecked")
-				@Test
-				public void testGetTasks() {
-					
-					// Aggiungo dei nuovi task
-					
-					// Ottengo la data di oggi
-					Calendar data = Calendar.getInstance();
-					data.add(Calendar.DATE, 0);
-					Date d = data.getTime();
 
-					// Creo il nuovo task
-					Task task1 = new Task("task1", "text1", d, "noResponsabile");
+		// Modifico il task aggiunto in precedenza
+		task1.setText("new_text");
+		task1.setState("assigned");
 
-					// Creo la stringa Json
-					String task1String = gson.toJson(task1, Task.class);
+		data.add(Calendar.DATE, 1);
+		d = data.getTime();
+		task1.setDate(d);
 
-					try {
-						// Aggiungo il task
-						String response = gson.fromJson(taskRegJson.addTask(task1String), String.class);
+		// Creo la stringa Json
+		task1String = gson.toJson(task1, Task.class);
 
-						// Verifico se la risposta ricevuta è uguale a quella attesa
-						assertEquals("Task added: " + task1.getTitle(), response);
+		try {
+			// Aggiorno il task
+			String response = gson.fromJson(taskRegJson.updateTask(task1String), String.class);
 
-					} catch (JsonSyntaxException | ParseException | InvalidUsernameException e) {
-						fail();
-					}
-					
-					// Creo il nuovo task
-					Task task2 = new Task("task2", "text2", d, "noResponsabile");
+			// Verifico se la risposta ricevuta è uguale a quella attesa
+			assertEquals("Task modified: " + task1.getTitle(), response);
 
-					// Creo la stringa Json
-					String task2String = gson.toJson(task2, Task.class);
+		} catch (JsonSyntaxException | ParseException | InvalidUsernameException | FileNotFoundException e) {
+			fail();
+		}
 
-					try {
-						// Aggiungo il task
-						String response = gson.fromJson(taskRegJson.addTask(task2String), String.class);
+	}
 
-						// Verifico se la risposta ricevuta è uguale a quella attesa
-						assertEquals("Task added: " + task2.getTitle(), response);
+	// Test per il get dei task senza responsabile
+	@SuppressWarnings("unchecked")
+	@Test
+	public void testGetTasks() {
 
-					} catch (JsonSyntaxException | ParseException | InvalidUsernameException e) {
-						fail();
-					}
-					
-					// Ottengo tutti i task senza responsabile
-					ArrayList<String> tasks;
-					try {
-						// Get tasks
-						tasks = gson.fromJson(taskRegJson.getTasks(), ArrayList.class);
-						
-						if(tasks.contains(task1String) && tasks.contains(task2String))
-							assertTrue("Tasks non found",true);
+		// Aggiungo dei nuovi task
 
-						
-					} catch (JsonSyntaxException | ParseException | InvalidKeyException e) {
-						fail();
-					}
-					
-				}
+		// Ottengo la data di oggi
+		Calendar data = Calendar.getInstance();
+		data.add(Calendar.DATE, 0);
+		Date d = data.getTime();
+
+		// Creo il nuovo task
+		Task task1 = new Task("task1", "text1", d, "noResponsabile");
+
+		// Creo la stringa Json
+		String task1String = gson.toJson(task1, Task.class);
+
+		try {
+			// Aggiungo il task
+			String response = gson.fromJson(taskRegJson.addTask(task1String), String.class);
+
+			// Verifico se la risposta ricevuta è uguale a quella attesa
+			assertEquals("Task added: " + task1.getTitle(), response);
+
+		} catch (JsonSyntaxException | ParseException | InvalidUsernameException e) {
+			fail();
+		}
+
+		// Creo il nuovo task
+		Task task2 = new Task("task2", "text2", d, "noResponsabile");
+
+		// Creo la stringa Json
+		String task2String = gson.toJson(task2, Task.class);
+
+		try {
+			// Aggiungo il task
+			String response = gson.fromJson(taskRegJson.addTask(task2String), String.class);
+
+			// Verifico se la risposta ricevuta è uguale a quella attesa
+			assertEquals("Task added: " + task2.getTitle(), response);
+
+		} catch (JsonSyntaxException | ParseException | InvalidUsernameException e) {
+			fail();
+		}
+
+		// Ottengo tutti i task senza responsabile
+		ArrayList<String> tasks;
+		try {
+			// Get tasks
+			tasks = gson.fromJson(taskRegJson.getTasks(), ArrayList.class);
+
+			assertEquals(tasks.size(), 2);
+
+		} catch (JsonSyntaxException | ParseException | InvalidKeyException e) {
+			fail();
+		}
+
+	}
 
 	GestoreDB g = GestoreDB.getInstance();
 }
