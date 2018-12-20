@@ -48,6 +48,21 @@ public class GestoreDB {
 		}
 	}
 
+	public void dropDatabase() {
+		try {
+			Statement myStmt = connection.createStatement();
+
+			String sql = "DROP DATABASE IF EXISTS TASKMANAGER; ";
+
+			myStmt.executeUpdate(sql);
+
+			System.err.println("Database dropped");
+		} catch (Exception exc) {
+			exc.printStackTrace();
+
+		}
+	}
+	
 	public void createTableUsers() {
 		try {
 
@@ -230,16 +245,19 @@ public class GestoreDB {
 		return tasks;
 	}
 
-	public void deleteTask(String task) {
+	public boolean deleteTask(String task) {
+		boolean result = false;
 		try {
 			Statement myStmt = connection.createStatement();
 			String sql = "delete ignore from tasks WHERE titolo='" + task + "';";
 
 			myStmt.executeUpdate(sql);
+			result = true;
 
 		} catch (Exception exc) {
 			exc.printStackTrace();
 		}
+		return result;
 	}
 
 	public void updateTask(Task task) {
