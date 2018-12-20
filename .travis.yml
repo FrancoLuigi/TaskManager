@@ -32,8 +32,6 @@ on_failure: always
 notifications:
   webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
   
-#Setting MySQL Configuration in Travis CI
-- cat ~travis/.my.cnf
 
 
 sudo: required
