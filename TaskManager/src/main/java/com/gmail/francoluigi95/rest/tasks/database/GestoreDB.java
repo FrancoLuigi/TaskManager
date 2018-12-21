@@ -32,8 +32,19 @@ public class GestoreDB {
 		}
 		return true;
 	}
+	
+	public boolean closeConnection() {
+		try {
+			this.connection.close();
+			System.err.println("Connection closed!");
+			return true;
+		} catch (SQLException e) {
+			System.err.println("Connection cannot be closed!");
+			return false;
+		}
+	}
 
-	public void createDatabase() {
+	public boolean createDatabase() {
 		try {
 			Statement myStmt = connection.createStatement();
 
@@ -42,13 +53,14 @@ public class GestoreDB {
 			myStmt.executeUpdate(sql);
 
 			System.err.println("Database created");
+			return true;
 		} catch (Exception exc) {
 			exc.printStackTrace();
-
+			return false;
 		}
 	}
 
-	public void dropDatabase() {
+	public boolean dropDatabase() {
 		try {
 			Statement myStmt = connection.createStatement();
 
@@ -57,13 +69,14 @@ public class GestoreDB {
 			myStmt.executeUpdate(sql);
 
 			System.err.println("Database dropped");
+			return true;
 		} catch (Exception exc) {
 			exc.printStackTrace();
-
+			return false;
 		}
 	}
 	
-	public void createTableUsers() {
+	public boolean createTableUsers() {
 		try {
 
 			Statement myStmt = connection.createStatement();
@@ -81,13 +94,14 @@ public class GestoreDB {
 			myStmt.executeUpdate(sql3);
 
 			System.err.println("Table User created");
+			return true;
 		} catch (Exception exc) {
 			exc.printStackTrace();
-
+			return false;
 		}
 	}
 
-	public void createTableTasks() {
+	public boolean createTableTasks() {
 		try {
 
 			Statement myStmt = connection.createStatement();
@@ -104,9 +118,10 @@ public class GestoreDB {
 			myStmt.executeUpdate(sql3);
 
 			System.err.println("Table Tasks created");
+			return true;
 		} catch (Exception exc) {
 			exc.printStackTrace();
-
+			return false;
 		}
 	}
 
@@ -298,11 +313,10 @@ public class GestoreDB {
 		try {
 			Statement myStmt = connection.createStatement();
 			myStmt.executeQuery("select 1");
+			return true;
 		} catch (Exception exc) {
 			return false;
 		}
-
-		return true;
 	}
 
 	public Connection connection;
