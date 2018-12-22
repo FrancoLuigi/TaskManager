@@ -90,7 +90,10 @@ public class LogInActivity extends AppCompatActivity {
                 if (mUsernameView.getText().toString().length() == 0 || mPasswordView.getText().toString().length() == 0) /* Verifico se username e password inseriti nei campi siano sufficientemente lunghi*/ {
                     runOnUiThread(new Runnable() {
                         public void run() {
-                                Toast.makeText(getApplicationContext(), "Username e/o password non riempiti correttamente.", Toast.LENGTH_SHORT).show();
+                            // aggiunto per il testing
+                            mResultOp.setVisibility(View.INVISIBLE);    // rendo la textView invisible per far apparire soltanto il toast
+                            mResultOp.setText("Username e/o password non riempiti correttamente");
+                            Toast.makeText(getApplicationContext(), "Username e/o password non riempiti correttamente.", Toast.LENGTH_SHORT).show();
                         }
                     });
                 } else
@@ -211,13 +214,12 @@ public class LogInActivity extends AppCompatActivity {
 
             } else if (c == 1) {
                 mResultOp.setText("Unregistered User");
-
                 Toast.makeText(getApplicationContext(), "Unregistered User", Toast.LENGTH_SHORT).show();
 
 
             } else if (c == 2) {
                 mResultOp.setText("Wrong credentials");
-                Toast.makeText(getApplicationContext(), "Unregistered User", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Wrong credentials", Toast.LENGTH_SHORT).show();
 
             }
 
@@ -257,6 +259,9 @@ public class LogInActivity extends AppCompatActivity {
 
                 runOnUiThread(new Runnable() { // Poiché queste operazioni si stanno effettuando in un metodo dell'AsyncTask, per la visualizzazione di Toast è necessario eseguire un "Thread UI".
                     public void run() {
+                        // aggiunto per il testing
+                        mResultOp.setVisibility(View.INVISIBLE);
+                        mResultOp.setText("Username già utilizzato.");
                         Toast.makeText(getApplicationContext(), "Username già utilizzato.", Toast.LENGTH_SHORT).show();
                     }
                 });

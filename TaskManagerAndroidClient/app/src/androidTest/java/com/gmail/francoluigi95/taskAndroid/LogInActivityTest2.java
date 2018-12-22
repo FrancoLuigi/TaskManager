@@ -18,8 +18,7 @@ import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
-import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.action.ViewActions.replaceText;
+import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
@@ -27,42 +26,15 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class LogInActivityTest {
+public class LogInActivityTest2 {
 
-    // Test di registrazione e log in di un utente
+    // Test per la registrazione di un utente (campi vuoti)
 
     @Rule
     public ActivityTestRule<LogInActivity> mActivityTestRule = new ActivityTestRule<>(LogInActivity.class);
 
     @Test
-    public void logInActivityTest() {
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.username),
-                        childAtPosition(
-                                allOf(withId(R.id.activity_login_page),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        // Viene inserito l'username
-        appCompatEditText.perform(replaceText("a"), closeSoftKeyboard());
-
-
-        ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.password),
-                        childAtPosition(
-                                allOf(withId(R.id.activity_login_page),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                3),
-                        isDisplayed()));
-        // Viene inserita la password
-        appCompatEditText2.perform(replaceText("b"), closeSoftKeyboard());
-
-
-
+    public void LogInActivityTest2() {
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.register_bottom), withText("Register User"),
                         childAtPosition(
@@ -74,16 +46,9 @@ public class LogInActivityTest {
                         isDisplayed()));
         appCompatButton.perform(click());
 
-        ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.login_button), withText("Login User"),
-                        childAtPosition(
-                                allOf(withId(R.id.activity_login_page),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                6),
-                        isDisplayed()));
-        appCompatButton2.perform(click());
+        // confronta il contenuto della textView con la stringa passata
+        onView(withId(R.id.textView)).check(matches(withText("Username e/o password non riempiti correttamente")));
+
     }
 
     private static Matcher<View> childAtPosition(
