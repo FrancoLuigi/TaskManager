@@ -31,7 +31,7 @@ public class GestoreDBTest2 {
 			settings = gson.fromJson(scanner.nextLine(), GestoreDBTest2.Settings.class);
 			scanner.close();
 			// System.err.println("Loading settings from file");
-		} catch (FileNotFoundException e1) {
+		} catch (FileNotFoundException exc) {
 			System.err.println("Settings file not found");
 			System.exit(-1);
 		}
@@ -53,7 +53,7 @@ public class GestoreDBTest2 {
 			settings = gson.fromJson(scanner.nextLine(), GestoreDBTest2.Settings.class);
 			scanner.close();
 			// System.err.println("Loading settings from file");
-		} catch (FileNotFoundException e1) {
+		} catch (FileNotFoundException exc) {
 			System.err.println("Settings file not found");
 			System.exit(-1);
 		}
@@ -75,7 +75,7 @@ public class GestoreDBTest2 {
 			settings = gson.fromJson(scanner.nextLine(), GestoreDBTest2.Settings.class);
 			scanner.close();
 			// System.err.println("Loading settings from file");
-		} catch (FileNotFoundException e1) {
+		} catch (FileNotFoundException exc) {
 			System.err.println("Settings file not found");
 			System.exit(-1);
 		}
@@ -100,7 +100,7 @@ public class GestoreDBTest2 {
 			settings = gson.fromJson(scanner.nextLine(), GestoreDBTest2.Settings.class);
 			scanner.close();
 			// System.err.println("Loading settings from file");
-		} catch (FileNotFoundException e1) {
+		} catch (FileNotFoundException exc) {
 			System.err.println("Settings file not found");
 			System.exit(-1);
 		}
@@ -128,7 +128,7 @@ public class GestoreDBTest2 {
 			settings = gson.fromJson(scanner.nextLine(), GestoreDBTest2.Settings.class);
 			scanner.close();
 			// System.err.println("Loading settings from file");
-		} catch (FileNotFoundException e1) {
+		} catch (FileNotFoundException exc) {
 			System.err.println("Settings file not found");
 			System.exit(-1);
 		}
@@ -153,7 +153,7 @@ public class GestoreDBTest2 {
 			settings = gson.fromJson(scanner.nextLine(), GestoreDBTest2.Settings.class);
 			scanner.close();
 			// System.err.println("Loading settings from file");
-		} catch (FileNotFoundException e1) {
+		} catch (FileNotFoundException exc) {
 			System.err.println("Settings file not found");
 			System.exit(-1);
 		}
@@ -181,7 +181,7 @@ public class GestoreDBTest2 {
 			settings = gson.fromJson(scanner.nextLine(), GestoreDBTest2.Settings.class);
 			scanner.close();
 			// System.err.println("Loading settings from file");
-		} catch (FileNotFoundException e1) {
+		} catch (FileNotFoundException exc) {
 			System.err.println("Settings file not found");
 			System.exit(-1);
 		}
@@ -207,7 +207,7 @@ public class GestoreDBTest2 {
 			settings = gson.fromJson(scanner.nextLine(), GestoreDBTest2.Settings.class);
 			scanner.close();
 			// System.err.println("Loading settings from file");
-		} catch (FileNotFoundException e1) {
+		} catch (FileNotFoundException exc) {
 			System.err.println("Settings file not found");
 			System.exit(-1);
 		}
@@ -232,7 +232,7 @@ public class GestoreDBTest2 {
 			settings = gson.fromJson(scanner.nextLine(), GestoreDBTest2.Settings.class);
 			scanner.close();
 			// System.err.println("Loading settings from file");
-		} catch (FileNotFoundException e1) {
+		} catch (FileNotFoundException exc) {
 			System.err.println("Settings file not found");
 			System.exit(-1);
 		}
@@ -260,7 +260,7 @@ public class GestoreDBTest2 {
 			settings = gson.fromJson(scanner.nextLine(), GestoreDBTest2.Settings.class);
 			scanner.close();
 			// System.err.println("Loading settings from file");
-		} catch (FileNotFoundException e1) {
+		} catch (FileNotFoundException exc) {
 			System.err.println("Settings file not found");
 			System.exit(-1);
 		}
@@ -288,7 +288,7 @@ public class GestoreDBTest2 {
 			settings = gson.fromJson(scanner.nextLine(), GestoreDBTest2.Settings.class);
 			scanner.close();
 			// System.err.println("Loading settings from file");
-		} catch (FileNotFoundException e1) {
+		} catch (FileNotFoundException exc) {
 			System.err.println("Settings file not found");
 			System.exit(-1);
 		}
