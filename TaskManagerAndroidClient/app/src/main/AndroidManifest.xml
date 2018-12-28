@@ -11,6 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
         <activity android:name="com.gmail.francoluigi95.taskAndroid.LogInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -18,17 +20,39 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.gmail.francoluigi95.taskAndroid.HelpActivity" />
-        <activity android:name="com.gmail.francoluigi95.taskAndroid.AssignActivity" />
-        <activity android:name="com.gmail.francoluigi95.taskAndroid.CompleteActivity" />
-        <activity android:name="com.gmail.francoluigi95.taskAndroid.AddActivity" />
+
+        <activity android:name="com.gmail.francoluigi95.taskAndroid.HelpActivity"
+            android:parentActivityName="com.gmail.francoluigi95.taskAndroid.MainActivity"/>
+
+        <activity android:name="com.gmail.francoluigi95.taskAndroid.AssignActivity"
+            android:parentActivityName="com.gmail.francoluigi95.taskAndroid.MainActivity"/>
+
+        <activity android:name="com.gmail.francoluigi95.taskAndroid.CompleteActivity"
+            android:parentActivityName="com.gmail.francoluigi95.taskAndroid.MainActivity"/>
+
+        <activity android:name="com.gmail.francoluigi95.taskAndroid.AddActivity"
+            android:parentActivityName="com.gmail.francoluigi95.taskAndroid.MainActivity"/>
+
         <activity android:name="com.gmail.francoluigi95.taskAndroid.MainActivity" />
-        <activity android:name="com.gmail.francoluigi95.taskAndroid.GetActivity" />
-        <activity android:name="com.gmail.francoluigi95.taskAndroid.GetAllActivity" />
-        <activity android:name="com.gmail.francoluigi95.taskAndroid.GetFreeActivity" />
-        <activity android:name="com.gmail.francoluigi95.taskAndroid.InfoActivity" />
-        <activity android:name="com.gmail.francoluigi95.taskAndroid.ModifyActivity" />
-        <activity android:name="com.gmail.francoluigi95.taskAndroid.RemoveActivity" />
+
+        <activity android:name="com.gmail.francoluigi95.taskAndroid.GetActivity"
+            android:parentActivityName="com.gmail.francoluigi95.taskAndroid.MainActivity"/>
+
+        <activity android:name="com.gmail.francoluigi95.taskAndroid.GetAllActivity"
+            android:parentActivityName="com.gmail.francoluigi95.taskAndroid.MainActivity"/>
+
+        <activity android:name="com.gmail.francoluigi95.taskAndroid.GetFreeActivity"
+            android:parentActivityName="com.gmail.francoluigi95.taskAndroid.MainActivity"/>
+
+        <activity android:name="com.gmail.francoluigi95.taskAndroid.InfoActivity"
+            android:parentActivityName="com.gmail.francoluigi95.taskAndroid.MainActivity"/>
+
+        <activity android:name="com.gmail.francoluigi95.taskAndroid.ModifyActivity"
+            android:parentActivityName="com.gmail.francoluigi95.taskAndroid.MainActivity"/>
+
+        <activity android:name="com.gmail.francoluigi95.taskAndroid.RemoveActivity"
+            android:parentActivityName="com.gmail.francoluigi95.taskAndroid.MainActivity"/>
+
     </application>
 
 </manifest>

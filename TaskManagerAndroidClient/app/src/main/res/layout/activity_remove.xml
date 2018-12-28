@@ -8,7 +8,6 @@
 
     tools:context="com.gmail.francoluigi95.taskAndroid.RemoveActivity">
 
-
     <TextView
         android:id="@+id/noteOutput"
         android:layout_width="196dp"
@@ -28,6 +27,8 @@
         android:textColor="@color/colorPrimary"
         android:textSize="18sp"
         android:textStyle="bold" />
+
+
 
     <Button
         android:id="@+id/buttonRemove"

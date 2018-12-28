@@ -46,7 +46,7 @@ public class AddTaskActivityTest2 {
                                                 0)),
                                 1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("q"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("a"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.password),
@@ -68,7 +68,7 @@ public class AddTaskActivityTest2 {
                                                 0)),
                                 3),
                         isDisplayed()));
-        appCompatEditText3.perform(replaceText("q"), closeSoftKeyboard());
+        appCompatEditText3.perform(replaceText("a"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.login_button), withText("Login User"),

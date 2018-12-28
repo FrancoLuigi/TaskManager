@@ -84,7 +84,13 @@ public class CompleteActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-                        new CompleteActivity.CompleteRestTask().execute(title);
+                        // Se non viene inserito il titolo mostra un messaggio
+                        if (autoComplete.getText().toString().equalsIgnoreCase("")) {
+                            textOUT.setText("Insert Title");
+                        }
+                        else {
+                            new CompleteActivity.CompleteRestTask().execute(title);
+                        }
                     }
                 });
             }

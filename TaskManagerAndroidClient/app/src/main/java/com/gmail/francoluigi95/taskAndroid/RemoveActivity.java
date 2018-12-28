@@ -34,6 +34,7 @@ import static com.gmail.francoluigi95.taskAndroid.LogInActivity.prefName;
 
 public class RemoveActivity extends AppCompatActivity {
 
+    // log in, aggiunta di un task, rimozione(viene lasciato il campo vuoto)
 
     private final String TAG = "LUIGI_DICTIONARY";
 
@@ -56,7 +57,6 @@ public class RemoveActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_remove);
 
-
         textOUT = (TextView) findViewById(R.id.noteOutput);
         textOUT.setScroller(new Scroller(getApplicationContext()));
         textOUT.setMaxLines(2);
@@ -68,31 +68,27 @@ public class RemoveActivity extends AppCompatActivity {
         textOUT.setTextColor(Color.BLUE);
         textOUT.setTextSize(3, 10);
         autoComplete = (AutoCompleteTextView) findViewById(R.id.autocomplete_title);
+
         gson = new Gson();
 
         preferences = getSharedPreferences(prefName, MODE_PRIVATE);
 
-
         if(preferences.contains("titles")) {
-            if (preferences.getStringSet("titles", titles).size() != 0) {
 
+            if (preferences.getStringSet("titles", titles).size() != 0) {
 
                 titles = preferences.getStringSet("titles", titles);
 
                 tasks = titles.toArray(new String[titles.size()]);
-
 
                 ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, R.layout.list_item, tasks);
 
                 // Set the adapter for the AutoCompleteTextView
                 autoComplete.setAdapter(adapter);
 
-
                 buttonRemove = (Button) findViewById(R.id.buttonRemove);
 
-
                 // Create an ArrayAdapter containing country names
-
 
                 autoComplete.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
@@ -101,9 +97,7 @@ public class RemoveActivity extends AppCompatActivity {
                     public void onItemClick(AdapterView<?> arg0, View arg1, int arg2,
                                             long arg3) {
 
-
                         title = arg0.getAdapter().getItem(arg2).toString();
-
                     }
                 });
 
@@ -111,14 +105,19 @@ public class RemoveActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
-
-                        new RemoveActivity.RemoveRestTask().execute(title);
-
+                        // Se la l'autoComplete TextView è vuota mostra un messaggio
+                        if (autoComplete.getText().toString().equalsIgnoreCase("")) {
+                            textOUT.setText("Insert Title");
+                        }
+                        // altrimenti rimuove il task inserito nella textview
+                        else {
+                            new RemoveActivity.RemoveRestTask().execute(title);
+                        }
                     }
                 });
 
-
             }
+
         }else
             textOUT.setText("No Tasks");
     }
@@ -138,7 +137,6 @@ public class RemoveActivity extends AppCompatActivity {
             String URI = baseURI + "tasks/" + title;
             String jsonResponse = null;
             cr = new ClientResource(URI);
-
 
             try {
                 jsonResponse = cr.delete().getText();

@@ -105,8 +105,14 @@ public class GetActivity extends AppCompatActivity {
                 buttonGet.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
-                        new GetActivity.GetRestTask().execute(title);
+                        // Se non viene inserito il titolo mostra un messaggio
+                        if (autoComplete.getText().toString().equalsIgnoreCase("")) {
+                            textOUT.setText("Insert Title");
+                        }
+                        // altrimenti ottiene il task inserito nella textview
+                        else{
+                            new GetActivity.GetRestTask().execute(title);
+                        }
                     }
                 });
 

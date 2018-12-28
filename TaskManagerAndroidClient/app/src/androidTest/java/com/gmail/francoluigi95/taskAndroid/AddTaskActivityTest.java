@@ -113,18 +113,6 @@ public class AddTaskActivityTest {
         // preme il pulsante add task
         onView(withId(R.id.buttonAdd)).perform(click());
 
-        /*ViewInteraction appCompatButton3 = onView(
-                allOf(withId(R.id.buttonAdd), withText("Add Task"),
-                        childAtPosition(
-                                allOf(withId(R.id.activity_main),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                4),
-                        isDisplayed()));
-        appCompatButton3.perform(click());
-        */
-
         ViewInteraction appCompatEditText5 = onView(
                 allOf(withId(R.id.title),
                         childAtPosition(

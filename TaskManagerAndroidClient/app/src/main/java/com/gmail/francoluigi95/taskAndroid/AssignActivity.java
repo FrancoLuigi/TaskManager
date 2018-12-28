@@ -85,7 +85,13 @@ public class AssignActivity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
 
+                        // Se non viene inserito il titolo mostra un messaggio
+                        if (autoComplete.getText().toString().equalsIgnoreCase("")) {
+                            textOUT.setText("Insert Title");
+                        }
+                        else{
                         new AssignActivity.AssignRestTask1().execute(title);
+                        }
                     }
                 });
 

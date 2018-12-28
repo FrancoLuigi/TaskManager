@@ -14,7 +14,7 @@
         android:id="@+id/listView"
         android:layout_width="379dp"
         android:layout_height="207dp"
-        android:layout_marginTop="86dp"
+        android:layout_marginTop="140dp"
 
         android:entries="@android:color/black"
         android:longClickable="true"

@@ -17,26 +17,26 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.replaceText;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
+import static android.support.test.espresso.matcher.ViewMatchers.withContentDescription;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddTaskActivityTest3 {
-
-    // Test per l'aggiunta di un task(solo descrizione)
+public class AssignActivityTest1 {
 
     @Rule
     public ActivityTestRule<LogInActivity> mActivityTestRule = new ActivityTestRule<>(LogInActivity.class);
 
     @Test
-    public void addTaskActivityTest3() {
+    public void assignActivityTest1() {
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.username),
                         childAtPosition(
@@ -57,18 +57,7 @@ public class AddTaskActivityTest3 {
                                                 0)),
                                 3),
                         isDisplayed()));
-        appCompatEditText2.perform(click());
-
-        ViewInteraction appCompatEditText3 = onView(
-                allOf(withId(R.id.password),
-                        childAtPosition(
-                                allOf(withId(R.id.activity_login_page),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                3),
-                        isDisplayed()));
-        appCompatEditText3.perform(replaceText("a"), closeSoftKeyboard());
+        appCompatEditText2.perform(replaceText("a"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.login_button), withText("Login User"),
@@ -82,7 +71,7 @@ public class AddTaskActivityTest3 {
         appCompatButton.perform(click());
 
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -98,6 +87,17 @@ public class AddTaskActivityTest3 {
                         isDisplayed()));
         appCompatButton2.perform(click());
 
+        ViewInteraction appCompatEditText3 = onView(
+                allOf(withId(R.id.title),
+                        childAtPosition(
+                                allOf(withId(R.id.activity_post_note),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatEditText3.perform(replaceText("nnn"), closeSoftKeyboard());
+
         ViewInteraction appCompatEditText4 = onView(
                 allOf(withId(R.id.text),
                         childAtPosition(
@@ -107,18 +107,13 @@ public class AddTaskActivityTest3 {
                                                 0)),
                                 4),
                         isDisplayed()));
-        appCompatEditText4.perform(click());
+        appCompatEditText4.perform(replaceText("n"), closeSoftKeyboard());
 
-        ViewInteraction appCompatEditText5 = onView(
-                allOf(withId(R.id.text),
-                        childAtPosition(
-                                allOf(withId(R.id.activity_post_note),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                4),
-                        isDisplayed()));
-        appCompatEditText5.perform(replaceText("testo"), closeSoftKeyboard());
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         ViewInteraction appCompatButton3 = onView(
                 allOf(withId(R.id.button), withText("Add Task"),
@@ -131,13 +126,47 @@ public class AddTaskActivityTest3 {
                         isDisplayed()));
         appCompatButton3.perform(click());
 
+        ViewInteraction appCompatImageButton = onView(
+                allOf(withContentDescription("Navigate up"),
+                        childAtPosition(
+                                allOf(withId(R.id.action_bar),
+                                        childAtPosition(
+                                                withId(R.id.action_bar_container),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatImageButton.perform(click());
+
+        ViewInteraction appCompatButton4 = onView(
+                allOf(withId(R.id.buttonAssign), withText("Assign Task"),
+                        childAtPosition(
+                                allOf(withId(R.id.activity_main),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatButton4.perform(click());
+
+        ViewInteraction appCompatButton5 = onView(
+                allOf(withId(R.id.buttonComplete), withText("Complete Task"),
+                        childAtPosition(
+                                allOf(withId(R.id.activity_get_note),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatButton5.perform(click());
+
         try {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
 
-        onView(withId(R.id.task)).check(matches(withText("Insert Title, Text and Date")));
+        // confronta il contenuto della textView con la stringa passata
+        onView(withId(R.id.noteoutput)).check(matches(withText("Insert Title")));
     }
 
     private static Matcher<View> childAtPosition(

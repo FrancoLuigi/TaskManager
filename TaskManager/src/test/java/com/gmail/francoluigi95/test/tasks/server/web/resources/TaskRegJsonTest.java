@@ -197,7 +197,7 @@ public class TaskRegJsonTest {
 	// Test per il get dei task senza responsabile
 	@SuppressWarnings("unchecked")
 	@Test
-	public void testGetTasks() {
+	public void testGetTasks() throws InvalidKeyException {
 
 		// Aggiungo dei nuovi task
 
@@ -248,7 +248,7 @@ public class TaskRegJsonTest {
 
 			assertEquals(tasks.size(), 2);
 
-		} catch (JsonSyntaxException | ParseException | InvalidKeyException e) {
+		} catch (JsonSyntaxException | ParseException e) {
 			fail();
 		}
 
