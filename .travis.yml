@@ -29,16 +29,7 @@ android:
      - android-24
      - sys-img-armeabi-v7a-android-24
      - tools
-     - platform-tools
-       
-   # Additional components
-   - extra-android-support
-   - extra-google-google_play_service
-   - extra-google-m2repository
-   - extra-android-m2repository
-   - addon-google_apis-google-19
-
-  
+     - platform-tools 
    
 before_script:
   - sudo apt-get update -qq
