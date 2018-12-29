@@ -3,6 +3,9 @@ language: android
 
 sudo: true
 
+jdk:
+- oraclejdk8
+
 services:
 - mysql
 
@@ -18,9 +21,6 @@ before_install:
 - cd TaskManager
 - chmod +x gradlew
 - ./gradlew clean
-
-jdk:
-- oraclejdk8
 
 android:
   components:
@@ -39,7 +39,10 @@ before_script:
   - android-wait-for-emulator
   - adb shell input keyevent 82 &
 
-script: ./gradlew connectedAndroidTest
+script:
+- cd ..
+- cd TaskManagerAndroidClient
+- ./gradlew connectedAndroidTest
 
 notifications:
 email:
