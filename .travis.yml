@@ -42,6 +42,7 @@ before_script:
 script:
 - cd ..
 - cd TaskManagerAndroidClient
+- chmod +x gradlew
 - ./gradlew connectedAndroidTest
 
 notifications:
