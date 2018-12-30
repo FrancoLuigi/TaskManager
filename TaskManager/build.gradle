@@ -1,6 +1,9 @@
 apply plugin: 'java'
 apply plugin: 'jacoco'
 apply plugin: 'checkstyle'
+apply plugin: 'application'
+
+mainClassName = "com.gmail.francoluigi95.rest.tasks.server.web.frontend.TaskRegistryWebApp"
 
 repositories {
     mavenCentral()
