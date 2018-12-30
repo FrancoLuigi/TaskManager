@@ -25,22 +25,28 @@ matrix:
    
    - language: android
      android:
+     licenses:
+    - 'android-sdk-preview-license-.+'
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
      components:
+     - extra-google-google_play_services
+     - extra-google-m2repository
+     - extra-android-m2repository
      - build-tools-28.0.3
      - android-28
-     - android-24
-     - sys-img-armeabi-v7a-android-24
+     - sys-img-armeabi-v7a-android-22
      - tools
-     - platform-tools 
+     - platform-tools
+     before_install:
+     - yes | sdkmanager "platforms;android-28"
+     - pip install --user codecov
      before_script:
-     - sudo apt-get update -qq
-     - sudo apt-get install -qq libstdc++6:i386 lib32z1 expect
-     - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
+     - echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
      - echo y | android update sdk --no-ui --filter build-tools-28.0.3,android-28,extra-android-m2repository
      - emulator -avd test -no-window &
      - android-wait-for-emulator
-     - adb shell input keyevent 82 &
-      
+     - adb shell input keyevent 82 &     
      script:
      - cd ..
      - cd TaskManagerAndroidClient
