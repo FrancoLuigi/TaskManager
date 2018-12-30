@@ -1,35 +1,31 @@
 matrix:
    include:
-  
-  - language: java
-   before_script:
-      - cd TaskManager
-      - chmod +x gradlew
-   script:
-      - ./gradlew clean
-
-   
-   - language: android
-      android:
-      components:
+      - language: java
+        script:
+         - cd TaskManager
+         - chmod +x gradlew
+         - ./gradlew clean
+      - language: android
+        android:
+        components:
          - build-tools-28.0.3
          - android-28
          - android-24
          - sys-img-armeabi-v7a-android-24
          - tools
          - platform-tools 
-     before_script:
-      - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
-      - echo y | android update sdk --no-ui --filter build-tools-28.0.3,android-28,extra-android-m2repository
-      - emulator -avd test -no-window &
-      - android-wait-for-emulator
-      - adb shell input keyevent 82 &
+         before_script:
+         - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
+         - echo y | android update sdk --no-ui --filter build-tools-28.0.3,android-28,extra-android-m2repository
+         - emulator -avd test -no-window &
+         - android-wait-for-emulator
+         - adb shell input keyevent 82 &
       
-    script:
-      - cd ..
-      - cd TaskManagerAndroidClient
-      - chmod +x gradlew
-      - ./gradlew connectedAndroidTest
+         script:
+         - cd ..
+         - cd TaskManagerAndroidClient
+         - chmod +x gradlew
+         - ./gradlew connectedAndroidTest
 
 sudo: true
 
