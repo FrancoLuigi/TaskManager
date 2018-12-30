@@ -18,15 +18,6 @@ before_install:
 - cd TaskManager
 - chmod +x gradlew
 - ./gradlew clean
-- echo no | android create avd --force -n test -t android-22 --abi armeabi-v7a
-- echo y | android update sdk --no-ui --filter build-tools-28.0.3,android-28,extra-android-m2repository
-- emulator -avd test -no-window &
-- android-wait-for-emulator
-- adb shell input keyevent 82 &   
-- cd ..
-- cd TaskManagerAndroidClient
-- chmod +x gradlew
-- ./gradlew connectedAndroidTest
 
 matrix:
    include:
@@ -37,9 +28,21 @@ matrix:
          components:
          - build-tools-28.0.3
          - android-28
-         - sys-img-armeabi-v7a-android-22
+         - sys-img-armeabi-v7a-android-24
          - tools
          - platform-tools
+     before_script:
+     - sudo apt-get update -qq
+     - sudo apt-get install -qq libstdc++6:i386 lib32z1 expect
+     - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
+     - echo y | android update sdk --no-ui --filter build-tools-28.0.3,android-28,extra-android-m2repository
+     - emulator -avd test -no-window &
+     - android-wait-for-emulator
+     - adb shell input keyevent 82 &   
+     - cd ..
+     - cd TaskManagerAndroidClient
+     - chmod +x gradlew
+     - ./gradlew connectedAndroidTest
          
 notifications:
 email:
