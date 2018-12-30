@@ -15,14 +15,13 @@ before_install:
 - sudo mysql_upgrade
 - sudo apt-get update -y
 - sudo service mysql restart
+- cd TaskManager
+- chmod +x gradlew
+- ./gradlew clean
 
 matrix:
    include:
-   - language: java
-   script:
-   - cd TaskManager
-   - chmod +x gradlew
-   - ./gradlew clean
+   - language: java   
    
    - language: android
      android:
