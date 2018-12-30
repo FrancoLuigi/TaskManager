@@ -1,5 +1,35 @@
-language: java
-language: android
+matrix:
+   include:
+  
+  - language: java
+   before_script:
+      - cd TaskManager
+      - chmod +x gradlew
+   script:
+      - ./gradlew clean
+
+   
+   - language: android
+      android:
+      components:
+         - build-tools-28.0.3
+         - android-28
+         - android-24
+         - sys-img-armeabi-v7a-android-24
+         - tools
+         - platform-tools 
+     before_script:
+      - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
+      - echo y | android update sdk --no-ui --filter build-tools-28.0.3,android-28,extra-android-m2repository
+      - emulator -avd test -no-window &
+      - android-wait-for-emulator
+      - adb shell input keyevent 82 &
+      
+    script:
+      - cd ..
+      - cd TaskManagerAndroidClient
+      - chmod +x gradlew
+      - ./gradlew connectedAndroidTest
 
 sudo: true
 
@@ -18,33 +48,6 @@ before_install:
 - sudo mysql_upgrade
 - sudo apt-get update -y
 - sudo service mysql restart
-- cd TaskManager
-- chmod +x gradlew
-- ./gradlew clean
-
-android:
-   components:
-     - build-tools-28.0.3
-     - android-28
-     - android-24
-     - sys-img-armeabi-v7a-android-24
-     - tools
-     - platform-tools 
-   
-before_script:
-  - sudo apt-get update -qq
-  - sudo apt-get install -qq libstdc++6:i386 lib32z1 expect
-  - echo no | android create avd --force -n test -t android-24 --abi armeabi-v7a
-  - echo y | android update sdk --no-ui --filter build-tools-28.0.3,android-28,extra-android-m2repository
-  - emulator -avd test -no-window &
-  - android-wait-for-emulator
-  - adb shell input keyevent 82 &
-
-script:
-- cd ..
-- cd TaskManagerAndroidClient
-- chmod +x gradlew
-- ./gradlew connectedAndroidTest
 
 notifications:
 email:
