@@ -22,7 +22,7 @@ before_install:
 - chmod +x gradlew
 - ./gradlew clean
 - cd bin/main/com/gmail/francoluigi95/rest/tasks/server/web/frontend
-- java taskRegistryWebApp
+- java TaskRegistryWebApp
 
 android:
    components:
