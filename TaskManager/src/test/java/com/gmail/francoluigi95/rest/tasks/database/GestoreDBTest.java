@@ -18,6 +18,8 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import com.gmail.francoluigi95.rest.tasks.commons.InvalidKeyException;
+import com.gmail.francoluigi95.rest.tasks.commons.InvalidUsernameException;
 import com.gmail.francoluigi95.rest.tasks.commons.Task;
 import com.gmail.francoluigi95.rest.tasks.commons.User1;
 import com.google.gson.Gson;
@@ -72,7 +74,7 @@ public class GestoreDBTest {
 
 	// Test inserimento e lettura di un task
 	@Test
-	public void testInsertReadTask() {
+	public void testInsertReadTask() throws InvalidKeyException {
 
 		// Ottengo la data corrente
 		Calendar data = Calendar.getInstance();
@@ -102,7 +104,7 @@ public class GestoreDBTest {
 
 	// test per l'aggiunta di un utente e il controllo della password dello stesso
 	@Test
-	public void testInsertUser() {
+	public void testInsertUser() throws InvalidUsernameException {
 
 		// creo un nuovo utente
 		char[] pw = { '1', '2', '3', '4' };
@@ -119,7 +121,7 @@ public class GestoreDBTest {
 
 	// Test modifica di un task
 	@Test
-	public void testUpdateTask() {
+	public void testUpdateTask() throws InvalidKeyException {
 
 		// Ottengo la data corrente
 		Calendar data = Calendar.getInstance();
@@ -150,7 +152,7 @@ public class GestoreDBTest {
 
 	// Test rimozione di un task
 	@Test
-	public void testDeleteTask() {
+	public void testDeleteTask() throws InvalidKeyException {
 
 		// Ottengo la data corrente
 		Calendar data = Calendar.getInstance();
@@ -170,7 +172,7 @@ public class GestoreDBTest {
 
 	// Test per il get dei task senza responsabile
 	@Test
-	public void testReadFreeTask() {
+	public void testReadFreeTask() throws InvalidKeyException {
 
 		// Ottengo la data corrente
 		Calendar data = Calendar.getInstance();
@@ -195,7 +197,7 @@ public class GestoreDBTest {
 
 	// Test per ottenere tutti i task di un utente
 	@Test
-	public void testReadAllTasksOfUser() {
+	public void testReadAllTasksOfUser() throws InvalidUsernameException, InvalidKeyException {
 
 		// creo un nuovo utente
 		char[] pw = { '5', '6', '7', '8' };

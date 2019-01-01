@@ -182,6 +182,7 @@ public class AddActivity extends AppCompatActivity {
 
             } catch (InvalidKeyException e2) {
                 String error2 = "Error: " + cr.getStatus().getCode() + " - " + e2.getMessage();
+                jsonResponse=error2;
                 Log.e(TAG, error2);
             }
 

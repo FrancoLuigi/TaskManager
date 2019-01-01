@@ -8,6 +8,8 @@ import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+import com.gmail.francoluigi95.rest.tasks.commons.InvalidKeyException;
+import com.gmail.francoluigi95.rest.tasks.commons.InvalidUsernameException;
 import com.gmail.francoluigi95.rest.tasks.commons.Task;
 import com.gmail.francoluigi95.rest.tasks.commons.User1;
 
@@ -32,7 +34,7 @@ public class GestoreDB {
 		}
 		return true;
 	}
-	
+
 	public boolean closeConnection() {
 		try {
 			this.connection.close();
@@ -75,7 +77,7 @@ public class GestoreDB {
 			return false;
 		}
 	}
-	
+
 	public boolean createTableUsers() {
 		try {
 
@@ -125,30 +127,48 @@ public class GestoreDB {
 		}
 	}
 
-	public void insertUser(User1 u) {
+	public void insertUser(User1 u) throws InvalidUsernameException {
 		try {
 
 			Statement myStmt = connection.createStatement();
+
 			String sql1 = "USE TASKMANAGER;";
+			myStmt.executeUpdate(sql1);
+			
+			ResultSet myRs = myStmt.executeQuery("select * from users as u WHERE u.username='" + u.getIdentifier() + "';");
+
+			if (myRs.next()) {
+				throw new InvalidUsernameException("Username duplicate:" + u.getIdentifier());
+			}
+
+		
 
 			String sql = "insert ignore into users " + " (username, password)" + " values ('" + u.getIdentifier()
 					+ "', '" + String.valueOf(u.getSecret()) + "')";
 
-			
 			myStmt.executeUpdate(sql1);
 			myStmt.executeUpdate(sql);
 
 		}
 
-		catch (Exception exc) {
-			exc.printStackTrace();
+		catch (SQLException e) {
+			e.printStackTrace();
 
 		}
 	}
 
-	public void insertTask(Task t) {
+	public void insertTask(Task t) throws InvalidKeyException{
 		try {
 			Statement myStmt = connection.createStatement();
+			String sql1 = "USE TASKMANAGER;";
+			myStmt.executeUpdate(sql1);
+			
+			ResultSet myRs = myStmt.executeQuery("select * from tasks as t WHERE t.titolo='" + t.getTitle() + "';");
+
+			if (myRs.next()) {
+				throw new InvalidKeyException("Task duplicate:" + t.getTitle());
+			}
+			
 
 			SimpleDateFormat sd = new SimpleDateFormat("yyy-MM-dd HH:mm:ss");
 
@@ -160,7 +180,7 @@ public class GestoreDB {
 
 		}
 
-		catch (Exception exc) {
+		catch (SQLException exc) {
 			exc.printStackTrace();
 
 		}
@@ -290,7 +310,6 @@ public class GestoreDB {
 		}
 	}
 
-	
 	public boolean checkConnectionAndReconnect() {
 
 		try {

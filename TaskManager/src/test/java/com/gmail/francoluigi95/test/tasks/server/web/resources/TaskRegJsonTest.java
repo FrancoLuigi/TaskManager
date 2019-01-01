@@ -82,7 +82,7 @@ public class TaskRegJsonTest {
 			// Verifico se la risposta ricevuta è uguale a quella attesa
 			assertEquals("Task added: " + task1.getTitle(), response);
 
-		} catch (JsonSyntaxException | ParseException | InvalidUsernameException e) {
+		} catch (JsonSyntaxException | ParseException e) {
 			fail();
 		}
 
@@ -109,7 +109,7 @@ public class TaskRegJsonTest {
 			// Verifico se la risposta ricevuta è uguale a quella attesa
 			assertEquals("The deadline date is earlier than today", response);
 
-		} catch (JsonSyntaxException | ParseException | InvalidUsernameException e) {
+		} catch (JsonSyntaxException | ParseException e) {
 			fail();
 		}
 
@@ -136,7 +136,7 @@ public class TaskRegJsonTest {
 			// Verifico se la risposta ricevuta è uguale a quella attesa
 			assertEquals("Re-enter the title", response);
 
-		} catch (JsonSyntaxException | ParseException | InvalidUsernameException e) {
+		} catch (JsonSyntaxException | ParseException e) {
 			fail();
 		}
 
@@ -166,7 +166,7 @@ public class TaskRegJsonTest {
 			// Verifico se la risposta ricevuta è uguale a quella attesa
 			assertEquals("Task added: " + task1.getTitle(), response);
 
-		} catch (JsonSyntaxException | ParseException | InvalidUsernameException e) {
+		} catch (JsonSyntaxException | ParseException e) {
 			fail();
 		}
 
@@ -219,7 +219,7 @@ public class TaskRegJsonTest {
 			// Verifico se la risposta ricevuta è uguale a quella attesa
 			assertEquals("Task added: " + task1.getTitle(), response);
 
-		} catch (JsonSyntaxException | ParseException | InvalidUsernameException e) {
+		} catch (JsonSyntaxException | ParseException e) {
 			fail();
 		}
 
@@ -236,7 +236,7 @@ public class TaskRegJsonTest {
 			// Verifico se la risposta ricevuta è uguale a quella attesa
 			assertEquals("Task added: " + task2.getTitle(), response);
 
-		} catch (JsonSyntaxException | ParseException | InvalidUsernameException e) {
+		} catch (JsonSyntaxException | ParseException e) {
 			fail();
 		}
 

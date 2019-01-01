@@ -6,11 +6,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.restlet.data.Status;
 import org.restlet.resource.Get;
 import org.restlet.resource.Post;
 import org.restlet.resource.Put;
 import org.restlet.resource.ServerResource;
 
+import com.gmail.francoluigi95.rest.tasks.commons.ErrorCodes;
 import com.gmail.francoluigi95.rest.tasks.commons.InvalidKeyException;
 import com.gmail.francoluigi95.rest.tasks.commons.InvalidUsernameException;
 import com.gmail.francoluigi95.rest.tasks.commons.Task;
@@ -26,7 +28,7 @@ public class TaskRegJson extends ServerResource {
 	}
 
 	@Post
-	public String addTask(String payload) throws ParseException, InvalidUsernameException {
+	public String addTask(String payload) throws ParseException {
 
 		Gson gson = new Gson();
 
@@ -47,11 +49,15 @@ public class TaskRegJson extends ServerResource {
 			return gson.toJson("Re-enter the title", String.class);
 		}
 
-		
-		g.insertTask(t);
+		try {
+			g.insertTask(t);
 
-		return gson.toJson("Task added: " + t.getTitle(), String.class);
-
+			return gson.toJson("Task added: " + t.getTitle(), String.class);
+		} catch (InvalidKeyException e) {
+			Status s = new Status(ErrorCodes.INVALID_KEY_CODE);
+			setStatus(s);
+			return gson.toJson(e, InvalidKeyException.class);
+		}
 	}
 
 	@Put
