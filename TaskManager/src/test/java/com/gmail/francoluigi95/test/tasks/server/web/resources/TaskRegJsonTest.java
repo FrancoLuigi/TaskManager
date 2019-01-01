@@ -70,7 +70,7 @@ public class TaskRegJsonTest {
 		Date d = data.getTime();
 
 		// Creo il nuovo task
-		Task task1 = new Task("task", "text", d, "new");
+		Task task1 = new Task("task1", "text", d, "new");
 
 		// Creo la stringa Json
 		String task1String = gson.toJson(task1, Task.class);
@@ -79,6 +79,7 @@ public class TaskRegJsonTest {
 			// Aggiungo il task
 			String response = gson.fromJson(taskRegJson.addTask(task1String), String.class);
 
+			System.out.println(response);
 			// Verifico se la risposta ricevuta è uguale a quella attesa
 			assertEquals("Task added: " + task1.getTitle(), response);
 
@@ -97,7 +98,7 @@ public class TaskRegJsonTest {
 		Date d = data.getTime();
 
 		// Creo il nuovo task
-		Task task1 = new Task("task", "text", d, "new");
+		Task task1 = new Task("task2", "text", d, "new");
 
 		// Creo la stringa Json
 		String task1String = gson.toJson(task1, Task.class);
@@ -154,7 +155,7 @@ public class TaskRegJsonTest {
 		Date d = data.getTime();
 
 		// Creo il nuovo task
-		Task task1 = new Task("task", "text", d, "new");
+		Task task1 = new Task("task3", "text", d, "new");
 
 		// Creo la stringa Json
 		String task1String = gson.toJson(task1, Task.class);
@@ -207,7 +208,7 @@ public class TaskRegJsonTest {
 		Date d = data.getTime();
 
 		// Creo il nuovo task
-		Task task1 = new Task("task1", "text1", d, "noResponsabile");
+		Task task1 = new Task("task4", "text1", d, "noResponsabile");
 
 		// Creo la stringa Json
 		String task1String = gson.toJson(task1, Task.class);
@@ -224,7 +225,7 @@ public class TaskRegJsonTest {
 		}
 
 		// Creo il nuovo task
-		Task task2 = new Task("task2", "text2", d, "noResponsabile");
+		Task task2 = new Task("task5", "text2", d, "noResponsabile");
 
 		// Creo la stringa Json
 		String task2String = gson.toJson(task2, Task.class);
