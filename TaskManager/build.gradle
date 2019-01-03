@@ -69,4 +69,3 @@ tasks.withType(Checkstyle) {
         html.stylesheet resources.text.fromFile('config/xsl/checkstyle-custom.xsl')
     }
 }
-}
