@@ -43,7 +43,7 @@ jacocoTestReport {
         csv.enabled false
         html{
             enabled true
-            destination "${buildDir}/reports/jacocoHtml"
+            destination "${buildDir}/reports/jacoco.html"
             }
     }
 }
@@ -61,7 +61,12 @@ checkstyleTest {
 tasks.withType(Checkstyle) {
     reports {
         xml.enabled false
-        html.enabled true
-        
+       
+        html{
+            enabled true
+            destination "${buildDir}/reports/checkstyle.html"
+            }
+        html.stylesheet resources.text.fromFile('config/xsl/checkstyle-custom.xsl')
     }
+}
 }

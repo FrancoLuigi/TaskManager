@@ -22,8 +22,8 @@ jdk:
 - oraclejdk8
 
 after_script:
-- cat /home/travis/build/FrancoLuigi/TaskManager/TaskManager/build/checkstyleReports/main.html
-- cat /home/travis/build/FrancoLuigi/TaskManager/TaskManager/build/reports/JUnitReport/index.html
+- cat /home/travis/build/FrancoLuigi/TaskManager/TaskManager/build/reports/checkstyle.html
+- cat /home/travis/build/FrancoLuigi/TaskManager/TaskManager/build/reports/jacoco.html
 
 notifications:
 email:
@@ -35,7 +35,7 @@ on_failure: always
 
 notifications:
   webhooks: https://fathomless-fjord-24024.herokuapp.com/notify
-  
+
 
 
 sudo: required
