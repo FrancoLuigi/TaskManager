@@ -38,7 +38,7 @@ jacocoTestReport {
     reports {
         xml{
             enabled true
-            destination "${buildDir}/reports/jacoco/jacoco.xml"
+            destination "${buildDir}/reports/jacoco.xml"
         }
         csv.enabled false
         html{
