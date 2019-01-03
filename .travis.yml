@@ -21,6 +21,10 @@ before_install:
 jdk:
 - oraclejdk8
 
+after_script:
+- cat /home/travis/build/FrancoLuigi/TaskManager/TaskManager/build/checkstyleReports/main.html
+- cat /home/travis/build/FrancoLuigi/TaskManager/TaskManager/build/reports/JUnitReport/index.html
+
 notifications:
 email:
 - francoluigi95@gmail.com
