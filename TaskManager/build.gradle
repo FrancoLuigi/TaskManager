@@ -32,21 +32,6 @@ dependencies {
 
 }
 
-jacocoTestReport {
-    group = "Reporting"
-    description = "Generate Jacoco coverage reports after running tests."
-    reports {
-        xml{
-            enabled true
-            destination "${buildDir}/reports/jacoco.xml"
-        }
-        csv.enabled false
-        html{
-            enabled true
-            destination "${buildDir}/reports/jacoco.html"
-            }
-    }
-}
 
 checkstyle {
     configFile file("config/checkstyle/checkstyle.xml")
@@ -65,6 +50,17 @@ tasks.withType(Checkstyle) {
         html{
             enabled true
             destination "${buildDir}/reports/checkstyle.html"
+        }
+
+    }
+}
+tasks.withType(Jacoco) {
+    reports {
+        xml.enabled false
+       
+        html{
+            enabled true
+            destination "${buildDir}/reports/jacoco.html"
         }
 
     }
