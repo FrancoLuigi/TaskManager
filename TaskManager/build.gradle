@@ -35,7 +35,7 @@ jacocoTestReport {
         csv.enabled false
         html{
             enabled true
-            html.destination file("${buildDir}/jacocoHtml")
+            html.destination file("${buildDir}/reports/jacocoHtml")
             }
     }
 }
