@@ -23,7 +23,6 @@ jdk:
 
 after_script:
 - cat /home/travis/build/FrancoLuigi/TaskManager/TaskManager/build/reports/checkstyle.html
-- cat /home/travis/build/FrancoLuigi/TaskManager/TaskManager/build/reports/jacocoHtml
 
 notifications:
 email:
