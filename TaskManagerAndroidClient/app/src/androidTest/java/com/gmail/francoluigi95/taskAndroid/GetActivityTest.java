@@ -30,15 +30,15 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class RemoveActivityTest {
+public class GetActivityTest {
 
-    // test rimozione task, textField empty
+    // test per il get task con campo vuoto
 
     @Rule
     public ActivityTestRule<LogInActivity> mActivityTestRule = new ActivityTestRule<>(LogInActivity.class);
 
     @Test
-    public void removeActivityTest() {
+    public void getActivityTest() {
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.username),
                         childAtPosition(
@@ -84,7 +84,7 @@ public class RemoveActivityTest {
         appCompatButton.perform(click());
 
         try {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -131,7 +131,7 @@ public class RemoveActivityTest {
                                                 0)),
                                 4),
                         isDisplayed()));
-        appCompatEditText6.perform(replaceText("pr"), closeSoftKeyboard());
+        appCompatEditText6.perform(replaceText("a"), closeSoftKeyboard());
 
         try {
             Thread.sleep(1000);
@@ -150,7 +150,7 @@ public class RemoveActivityTest {
                         isDisplayed()));
         appCompatButton4.perform(click());
 
-        ViewInteraction appCompatImageButton = onView(
+        ViewInteraction appCompatImageButton2 = onView(
                 allOf(withContentDescription("Navigate up"),
                         childAtPosition(
                                 allOf(withId(R.id.action_bar),
@@ -159,27 +159,27 @@ public class RemoveActivityTest {
                                                 0)),
                                 1),
                         isDisplayed()));
-        appCompatImageButton.perform(click());
+        appCompatImageButton2.perform(click());
 
         ViewInteraction appCompatButton5 = onView(
-                allOf(withId(R.id.buttonRemove), withText("Remove Task"),
+                allOf(withId(R.id.buttonGet), withText("Get Task"),
                         childAtPosition(
                                 allOf(withId(R.id.activity_main),
                                         childAtPosition(
                                                 withId(android.R.id.content),
                                                 0)),
-                                2),
+                                7),
                         isDisplayed()));
         appCompatButton5.perform(click());
 
         ViewInteraction appCompatButton6 = onView(
-                allOf(withId(R.id.buttonRemove), withText("Remove Task"),
+                allOf(withId(R.id.buttongetactivity), withText("Get Task"),
                         childAtPosition(
-                                allOf(withId(R.id.activity_remove_note),
+                                allOf(withId(R.id.activity_get_note),
                                         childAtPosition(
                                                 withId(android.R.id.content),
                                                 0)),
-                                2),
+                                1),
                         isDisplayed()));
         appCompatButton6.perform(click());
 

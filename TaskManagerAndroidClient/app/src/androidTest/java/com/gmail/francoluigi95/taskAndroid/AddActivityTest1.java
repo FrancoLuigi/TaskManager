@@ -28,15 +28,15 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddTaskActivityTest2 {
+public class AddActivityTest1 {
 
-    // Test per l'aggiunta di un task(solo titolo)
+    // Test per l'aggiunta di un task(campi vuoti)
 
     @Rule
     public ActivityTestRule<LogInActivity> mActivityTestRule = new ActivityTestRule<>(LogInActivity.class);
 
     @Test
-    public void addTaskActivityTest2() {
+    public void addActivityTest1() {
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.username),
                         childAtPosition(
@@ -46,7 +46,7 @@ public class AddTaskActivityTest2 {
                                                 0)),
                                 1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("a"), closeSoftKeyboard());
+        appCompatEditText.perform(replaceText("z"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText2 = onView(
                 allOf(withId(R.id.password),
@@ -68,9 +68,20 @@ public class AddTaskActivityTest2 {
                                                 0)),
                                 3),
                         isDisplayed()));
-        appCompatEditText3.perform(replaceText("a"), closeSoftKeyboard());
+        appCompatEditText3.perform(replaceText("z"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton = onView(
+                allOf(withId(R.id.register_bottom), withText("Register User"),
+                        childAtPosition(
+                                allOf(withId(R.id.activity_login_page),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                7),
+                        isDisplayed()));
+        appCompatButton.perform(click());
+
+        ViewInteraction appCompatButton2 = onView(
                 allOf(withId(R.id.login_button), withText("Login User"),
                         childAtPosition(
                                 allOf(withId(R.id.activity_login_page),
@@ -79,7 +90,7 @@ public class AddTaskActivityTest2 {
                                                 0)),
                                 6),
                         isDisplayed()));
-        appCompatButton.perform(click());
+        appCompatButton2.perform(click());
 
         try {
             Thread.sleep(3000);
@@ -87,7 +98,7 @@ public class AddTaskActivityTest2 {
             e.printStackTrace();
         }
 
-        ViewInteraction appCompatButton2 = onView(
+        ViewInteraction appCompatButton3 = onView(
                 allOf(withId(R.id.buttonAdd), withText("Add Task"),
                         childAtPosition(
                                 allOf(withId(R.id.activity_main),
@@ -96,20 +107,9 @@ public class AddTaskActivityTest2 {
                                                 0)),
                                 4),
                         isDisplayed()));
-        appCompatButton2.perform(click());
+        appCompatButton3.perform(click());
 
-        ViewInteraction appCompatEditText4 = onView(
-                allOf(withId(R.id.title),
-                        childAtPosition(
-                                allOf(withId(R.id.activity_post_note),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                1),
-                        isDisplayed()));
-        appCompatEditText4.perform(replaceText("task1"), closeSoftKeyboard());
-
-        ViewInteraction appCompatButton3 = onView(
+        ViewInteraction appCompatButton4 = onView(
                 allOf(withId(R.id.button), withText("Add Task"),
                         childAtPosition(
                                 allOf(withId(R.id.activity_post_note),
@@ -118,7 +118,7 @@ public class AddTaskActivityTest2 {
                                                 0)),
                                 7),
                         isDisplayed()));
-        appCompatButton3.perform(click());
+        appCompatButton4.perform(click());
 
         try {
             Thread.sleep(3000);

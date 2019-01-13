@@ -231,7 +231,7 @@ public class AssignActivityTest {
         // confronta il contenuto della textView con la stringa passata
         onView(withId(R.id.noteoutput))
                 .check(matches(withText
-                        ("Titolo: tas, testo: a, data: 28/12/2018, stato: InProgress, user: a;")));
+                        ("Titolo: tas, testo: a, data: 13/01/2019, stato: InProgress, user: a;")));
     }
 
     private static Matcher<View> childAtPosition(

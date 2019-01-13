@@ -17,6 +17,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.Espresso.pressBack;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.action.ViewActions.replaceText;
@@ -28,15 +29,15 @@ import static org.hamcrest.Matchers.allOf;
 
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class AddTaskActivityTest1 {
+public class AddActivityTest {
 
-    // Test per l'aggiunta di un task(campi vuoti)
+    // Test per l'aggiunta di un task (titolo, testo e data)
 
     @Rule
     public ActivityTestRule<LogInActivity> mActivityTestRule = new ActivityTestRule<>(LogInActivity.class);
 
     @Test
-    public void addTaskActivityTest1() {
+    public void addActivityTest() {
         ViewInteraction appCompatEditText = onView(
                 allOf(withId(R.id.username),
                         childAtPosition(
@@ -46,18 +47,18 @@ public class AddTaskActivityTest1 {
                                                 0)),
                                 1),
                         isDisplayed()));
-        appCompatEditText.perform(replaceText("z"), closeSoftKeyboard());
+        appCompatEditText.perform(click());
 
         ViewInteraction appCompatEditText2 = onView(
-                allOf(withId(R.id.password),
+                allOf(withId(R.id.username),
                         childAtPosition(
                                 allOf(withId(R.id.activity_login_page),
                                         childAtPosition(
                                                 withId(android.R.id.content),
                                                 0)),
-                                3),
+                                1),
                         isDisplayed()));
-        appCompatEditText2.perform(click());
+        appCompatEditText2.perform(replaceText("mario"), closeSoftKeyboard());
 
         ViewInteraction appCompatEditText3 = onView(
                 allOf(withId(R.id.password),
@@ -68,7 +69,18 @@ public class AddTaskActivityTest1 {
                                                 0)),
                                 3),
                         isDisplayed()));
-        appCompatEditText3.perform(replaceText("z"), closeSoftKeyboard());
+        appCompatEditText3.perform(click());
+
+        ViewInteraction appCompatEditText4 = onView(
+                allOf(withId(R.id.password),
+                        childAtPosition(
+                                allOf(withId(R.id.activity_login_page),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                3),
+                        isDisplayed()));
+        appCompatEditText4.perform(replaceText("1234"), closeSoftKeyboard());
 
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.register_bottom), withText("Register User"),
@@ -98,35 +110,45 @@ public class AddTaskActivityTest1 {
             e.printStackTrace();
         }
 
-        ViewInteraction appCompatButton3 = onView(
-                allOf(withId(R.id.buttonAdd), withText("Add Task"),
-                        childAtPosition(
-                                allOf(withId(R.id.activity_main),
-                                        childAtPosition(
-                                                withId(android.R.id.content),
-                                                0)),
-                                4),
-                        isDisplayed()));
-        appCompatButton3.perform(click());
+        // preme il pulsante add task
+        onView(withId(R.id.buttonAdd)).perform(click());
 
-        ViewInteraction appCompatButton4 = onView(
-                allOf(withId(R.id.button), withText("Add Task"),
+        ViewInteraction appCompatEditText5 = onView(
+                allOf(withId(R.id.title),
                         childAtPosition(
                                 allOf(withId(R.id.activity_post_note),
                                         childAtPosition(
                                                 withId(android.R.id.content),
                                                 0)),
-                                7),
+                                1),
                         isDisplayed()));
-        appCompatButton4.perform(click());
+        appCompatEditText5.perform(click());
 
-        try {
-            Thread.sleep(3000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        ViewInteraction appCompatEditText6 = onView(
+                allOf(withId(R.id.title),
+                        childAtPosition(
+                                allOf(withId(R.id.activity_post_note),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                1),
+                        isDisplayed()));
+        appCompatEditText6.perform(replaceText("task1"), closeSoftKeyboard());
 
-        onView(withId(R.id.task)).check(matches(withText("Insert Title, Text and Date")));
+        ViewInteraction appCompatEditText7 = onView(
+                allOf(withId(R.id.text),
+                        childAtPosition(
+                                allOf(withId(R.id.activity_post_note),
+                                        childAtPosition(
+                                                withId(android.R.id.content),
+                                                0)),
+                                4),
+                        isDisplayed()));
+        appCompatEditText7.perform(replaceText("esempio"), closeSoftKeyboard());
+
+        // aggiunge il task appena inserito
+        onView(withId(R.id.button)).perform(click());
+
     }
 
     private static Matcher<View> childAtPosition(
